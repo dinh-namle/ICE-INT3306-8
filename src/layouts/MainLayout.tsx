@@ -1,7 +1,10 @@
+import SideBar from "../components/SideBar";
+
 function MainLayout(){
   return (
-    <div>
-      Main
+    <div className="flex flex-row">
+      <SideBar />
+      <div>Test</div>
     </div>
   );
 }
