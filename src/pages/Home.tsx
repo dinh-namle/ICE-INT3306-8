@@ -49,7 +49,7 @@ const Home = () => {
       <div
         className='bg-local h-svh justify-center items-end flex flex-col pr-32 pt-[80px]'
         style={{ backgroundImage: "url('/back2.jpg')" }}
-      > //TODO: fix background image
+      > 
         <p className='text-white text-7xl font-sans font-extrabold flex flex-col my-4 space-y-4 items-end'>
           <span>BẢO VỆ</span> <span className='text-main2-1'>DOANH NGHIỆP</span> <span>CỦA BẠN KHỎI</span>{' '}
           <span className='text-sub-1'>LỖ HỔNG</span>
