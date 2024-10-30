@@ -1,11 +1,10 @@
-//TODO Lam layout cho admin
-
 import { Outlet } from "react-router-dom";
+import AdminSideBar from "../components/AdminSideBar";
 
 function AdminLayout(){
   return(
-    <div>
-      Admin
+    <div className="flex flex-row">
+      <AdminSideBar/>
       <Outlet/>
     </div>
   );
