@@ -1,4 +1,6 @@
 export {default as Home} from "./Home"
 export {default as Admin} from "./Admin"
 export {default as Programs} from "./Programs"
+export {default as R_EditProfile} from "./R_EditProfile"
 export {default as LeaderBoard} from "./LeaderBoard"
+export {default as User} from "./User"
