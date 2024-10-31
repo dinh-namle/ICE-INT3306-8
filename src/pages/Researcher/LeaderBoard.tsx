@@ -8,6 +8,11 @@ const LeaderBoard = () => {
   const data = [
     { Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
     { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 },
+    { Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
+    { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 },{ Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
+    { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 },{ Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
+    { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 },{ Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
+    { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 }
 
   ];
 
