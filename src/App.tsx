@@ -19,7 +19,7 @@ export default function App() {
 
         <Route element={<MainLayout />}>
           < Route path='/programs' element={<Programs />} />
-          <Route path='/user' element={<Profile />} />
+          <Route path='/profile' element={<Profile />} />
           <Route path='/leaderboard' element={<LeaderBoard />} />
         </Route>
 
