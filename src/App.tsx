@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css'
-import { Admin, Home, LeaderBoard, Profile, Programs } from './pages';
+import { Admin, Notification, Home, LeaderBoard, Profile, Programs } from './pages';
 import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout';
 import HomeLayout from './layouts/HomeLayout';
@@ -15,6 +15,7 @@ export default function App() {
 
         <Route element={<AdminLayout />}>
           <Route path='/admin' element={<Admin />} />
+          <Route path='/admin/notification' element={<Notification />} />
         </Route>
 
         <Route element={<MainLayout />}>
