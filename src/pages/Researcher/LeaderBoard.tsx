@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { MdLeaderboard } from "react-icons/md";
-import AddTable from '../components/AddTable';
+import AddTable from '../../components/AddTable';
 
 const LeaderBoard = () => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-const User = () => {
+const Profile = () => {
     const navigate = useNavigate()
 
     const handleNavigate = (path: string) => {
@@ -23,4 +23,4 @@ const User = () => {
     )
 }
 
-export default User;
+export default Profile;
