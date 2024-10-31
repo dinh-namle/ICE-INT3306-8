@@ -9,23 +9,15 @@ interface TableProps {
 
 const AddTable: React.FC<TableProps> = ({ columns, data, nameTable, description }) => {
   return (
-    <div className="bg-main1-1 flex flex-col mt-[10px] ml-[30px] min-w-[300px] max-w-[700px] p-[20px] h-[560px]">
-      <div className="mt-[10px]">
-        <span className="text-slate-200 text-[20px] ml-[40px] font-semibold">{nameTable}</span>
+    <div className="bg-main1-1 flex flex-col mt-2 ml-7 min-w-[300px] max-w-[700px] p-5 h-[560px]">
+      <div className="mt-2">
+        <span className="text-slate-200 text-2xl ml-10 font-semibold">{nameTable}</span>
       </div>
-      <div className="ml-[30px]">
+      <div className="ml-7">
         <span className="text-main1-3">{description}</span>
       </div>
 
-      <div
-        className="mx-auto mt-[40px]"
-        style={{
-          maxHeight: '400px',
-          overflowY: 'auto', 
-          scrollbarWidth: 'thin', 
-          scrollbarColor: '#4a5568 transparent', 
-        }}
-      >
+      <div className="mx-auto mt-10 max-h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
         <table className="min-w-full w-auto border border-gray-600 table-auto">
           <thead>
             <tr>
@@ -42,7 +34,7 @@ const AddTable: React.FC<TableProps> = ({ columns, data, nameTable, description 
               <tr key={index}>
                 <td className="py-2 px-4 border-b text-center text-white">{index + 1}</td>
                 {columns.map((column, colIndex) => (
-                  <td key={colIndex} className="py-2 px-4 border-b text-center text-white" style={{ minWidth: '150px' }}>
+                  <td key={colIndex} className="py-2 px-4 border-b text-center text-white min-w-[150px]">
                     {item[column]}
                   </td>
                 ))}
@@ -51,7 +43,6 @@ const AddTable: React.FC<TableProps> = ({ columns, data, nameTable, description 
           </tbody>
         </table>
       </div>
-
     </div>
   );
 };
