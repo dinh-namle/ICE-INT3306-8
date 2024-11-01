@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css'
-import { Admin, Notification, Home, LeaderBoard, Profile, Programs } from './pages';
+import { Admin, AdminNotification, Home, Programs, LeaderBoard, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings } from './pages';
 import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout';
 import HomeLayout from './layouts/HomeLayout';
@@ -14,8 +14,12 @@ export default function App() {
         </Route>
 
         <Route element={<AdminLayout />}>
-          <Route path='/admin' element={<Admin />} />
-          <Route path='/admin/notification' element={<Notification />} />
+          {/* <Route path='/admin' element={<Notification />} /> */}
+          <Route path='/admin/notification' element={<AdminNotification />} />
+          <Route path='/admin/accounts' element={<AdminAccounts />} />
+          <Route path='/admin/programs' element={<AdminPrograms />} />
+          <Route path='/admin/reports' element={<AdminReports />} />
+          <Route path='/admin/settings' element={<AdminSettings />} />
         </Route>
 
         <Route element={<MainLayout />}>
