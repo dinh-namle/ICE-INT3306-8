@@ -1,7 +1,9 @@
+import { Login } from "../pages/Auth";
+
 function AuthLayout(){
   return (
     <div>
-      Auth
+      <Login/>
     </div>
   );
 }
