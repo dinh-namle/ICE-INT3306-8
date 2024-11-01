@@ -25,7 +25,7 @@ const LeaderBoard = () => {
 
   return (
     <div className="bg-main1-2 min-h-screen w-full">
-      <div className="w-full h-[70px] bg-main1-1 flex items-center justify-center mx-auto border-l-[0.1px] border-main1-3">
+      <div className="w-full h-[70px] bg-main1-1 flex items-center justify-start mx-auto border-l-[0.1px] border-main1-3">
         <h1 className="text-main2-1 pl-[50px] text-3xl font-bold">LeaderBoards</h1>
       </div>
 
