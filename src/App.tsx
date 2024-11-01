@@ -1,10 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css'
-import { Admin, AdminNotification, Home, Programs, LeaderBoard, SubmitReport, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings, Login } from './pages';
+import { Admin, AdminNotification, Home, Programs, LeaderBoard, SubmitReport, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings, Login, ResearchRegister } from './pages';
 import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout';
 import HomeLayout from './layouts/HomeLayout';
 import AuthLayout from './layouts/AuthLayout';
+import AccountRegister from './pages/Auth/AccountRegister';
+import ResearcherRegister from './pages/Auth/ResearcherRegister';
+import PartnerRegister from './pages/Auth/PartnerRegister';
 export default function App() {
   return (
     <div>
@@ -15,6 +18,9 @@ export default function App() {
 
         <Route element={<AuthLayout />}>
           <Route path='/login' element={<Login />} />
+          <Route path='/Register' element={<AccountRegister />} />
+          <Route path='/Register/Researcher' element={<ResearcherRegister />} />
+          <Route path='/Register/Partner' element={<PartnerRegister />} />
         </Route>
 
         <Route element={<AdminLayout />}>
