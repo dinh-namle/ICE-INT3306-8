@@ -1,11 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css'
-import { Admin, AdminNotification, Home, Programs, LeaderBoard, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings } from './pages';
+import { Admin, AdminNotification, Home, Programs, LeaderBoard, SubmitReport, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings } from './pages';
 import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout';
 import HomeLayout from './layouts/HomeLayout';
-import SubmitReport from './pages/Researcher/SubmitReport';
-
 export default function App() {
   return (
     <div>
