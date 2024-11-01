@@ -4,6 +4,7 @@ import { Admin, AdminNotification, Home, Programs, LeaderBoard, Profile, AdminPr
 import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout';
 import HomeLayout from './layouts/HomeLayout';
+import SubmitReport from './pages/Researcher/SubmitReport';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           < Route path='/programs' element={<Programs />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/leaderboard' element={<LeaderBoard />} />
+          <Route path='/SubmitReport' element={<SubmitReport />} />
         </Route>
 
       </Routes>
