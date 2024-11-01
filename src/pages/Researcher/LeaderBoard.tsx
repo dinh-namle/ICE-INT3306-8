@@ -9,9 +9,16 @@ const LeaderBoard = () => {
     { Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
     { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 },
     { Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
-    { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 },{ Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
-    { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 },{ Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
-    { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 },{ Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
+    { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 },
+    { Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
+    { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 },
+    { Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
+    { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 },
+    { Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
+    { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 },
+    { Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
+    { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 },
+    { Name: 'Player 1', Reputation: 100, Signal: 120, Impact: 130 },
     { Name: 'Player 2', Reputation: 100, Signal: 115, Impact: 125 }
 
   ];
@@ -22,7 +29,7 @@ const LeaderBoard = () => {
         <h1 className="text-main2-1 pl-[50px] text-3xl font-bold">LeaderBoards</h1>
       </div>
 
-      <div className="mt-[15px] ml-[10px] w-full flex flex-col items-start justify-center"> 
+      <div className="mt-[15px] ml-[10px] mr-[10px] w-full flex flex-col items-start justify-center"> 
         <div className="flex items-center pl-[60px] h-[35px]"> 
           <MdLeaderboard className="text-white text-3xl mr-2" /> 
           <img src="/ICE.png" alt="logo_ice" className="h-[20px] object-contain my-8"/>
@@ -33,8 +40,8 @@ const LeaderBoard = () => {
         </div>
       </div>
 
-      <div className="flex flex-row flex-wrap items-start"> 
-        <div className="flex flex-col">
+      <div className="flex flex-row w-full p-[20px]"> 
+        <div className="basis-2/3 mr-[20px]">
           <AddTable 
             columns={['Name', 'Reputation', 'Signal', 'Impact']} 
             data={data} 
@@ -43,7 +50,7 @@ const LeaderBoard = () => {
           />
         </div>
         
-        <div className="flex flex-col">
+        <div className="basis-1/3 mr-[30px]">
           <AddTable 
             columns={['Type Error', 'Quantity']} 
             data={[{'Type Error': 'type1', Quantity: 100}]} 
