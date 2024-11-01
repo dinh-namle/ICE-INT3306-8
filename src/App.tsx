@@ -14,7 +14,7 @@ export default function App() {
         </Route>
 
         <Route element={<AdminLayout />}>
-          <Route path='/admin' element={<Admin />} />
+          <Route path='/admin' element={<Notification />} />
           <Route path='/admin/notification' element={<Notification />} />
         </Route>
 
