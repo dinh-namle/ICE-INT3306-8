@@ -18,7 +18,7 @@ const LeaderBoard = () => {
 
   return (
     <div className="bg-main1-2 min-h-screen w-full">
-      <div className="mt-0 ml-[10px] w-full h-[70px] bg-main1-1 flex items-center justify-center mx-auto">
+      <div className="w-full h-[70px] bg-main1-1 flex items-center justify-center mx-auto border-l-[0.1px] border-main1-3">
         <h1 className="text-main2-1 pl-[50px] text-3xl font-bold">LeaderBoards</h1>
       </div>
 
@@ -29,7 +29,7 @@ const LeaderBoard = () => {
           <span className="text-main2-1 text-3xl ml-1 font-semibold"> LeaderBoards</span>
         </div>
         <div className="text-main1-3 mt-[1px] ml-[50px]"> 
-          Mô tả 1 cái gì đó
+          <span>Tất cả bảng xếp hạng đều dựa trên khoảng thời gian đã chọn.</span>
         </div>
       </div>
 
@@ -39,7 +39,7 @@ const LeaderBoard = () => {
             columns={['Name', 'Reputation', 'Signal', 'Impact']} 
             data={data} 
             nameTable="Xếp hạng người dùng" 
-            description="Mô tả về xếp hạng người dùng"
+            description="Xếp hạng được tính dựa trên danh tiếng đạt được."
           />
         </div>
         
@@ -48,7 +48,7 @@ const LeaderBoard = () => {
             columns={['Type Error', 'Quantity']} 
             data={[{'Type Error': 'type1', Quantity: 100}]} 
             nameTable="Chủng lỗi" 
-            description="Mô tả về các loại lỗi"
+            description="Các loại lỗi phổ biến nhất."
           />
         </div>
       </div>
