@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const handleNavigate = (path: string) => {
       navigate(path)
-    };
+    }
 
     const userName : string = `CaoLePhungCP`;
     const email : string = `caolephungcp@gmail.com`;
@@ -39,13 +39,36 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    <div className="bg-main1-3">
-                        
+                    <div className="bg-main1-1 w-full flex flex-col items-center p-[1px] pb-[30px] mb-[30px]">
+                        day la khoi thu 2
+                    
                     </div>
 
                 </div>
-                <div className="bg-main1-1 min-w-[100px] max-w-[1000px] h-[650px] w-[800px]">
 
+                <div className="min-w-[100px] max-w-[1000px] h-[650px] w-[800px] flex flex-col items-center">
+                    <div className="bg-main1-1 flex flex-col w-full">
+                        <div className="w-full"><span className="text-main1-3">About {userName}</span></div>
+                        <div className="w-full">
+                            day la thong tin
+                        </div>
+                    </div>
+
+                    <div className="bg-main1-1 flex flex-col w-full">
+                        <div className="w-full"><span className="text-main1-3">Hacktivity</span></div>
+                        <div className="w-full">
+                            day la thong tin
+                        </div>
+                    </div>
+
+                    <div className="bg-main1-1 flex flex-col w-full">
+                        <div className="w-full flex flex-row">
+                            <span className="text-main1-3">Thanks</span>
+                        </div>
+                        <div className="w-full">
+                            day la thong tin
+                        </div>
+                    </div>
                 </div>
             </div>
             
