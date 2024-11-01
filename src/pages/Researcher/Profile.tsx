@@ -14,14 +14,17 @@ const Profile = () => {
     const [phoneNumber, setPhoneNumber] = useState('0123 456 789');
     const [webSite, setWebSite] = useState('abcdd');
     const [about, setAbout] = useState(`Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel reprehenderit nihil quis ullam quam, voluptatum ea cum nemo dolore qui esse ex ut non, odit soluta rem tenetur repudiandae nesciunt.`);
+    const [lastUpdated, setLastUpdated] = useState(new Date().toLocaleString());
 
     const handleEditToggle = () => {
         if (isEditing) {
             console.log('Saving changes:', { userName, email, phoneNumber, webSite, about });
+            setLastUpdated(new Date().toLocaleString());
         }
         setIsEditing(!isEditing);
     };
 
+    // Render ra ô nhập liệu
     const renderInput = (
         id: string,
         value: string,
@@ -29,7 +32,7 @@ const Profile = () => {
         placeholder: string,
         type: string = "text"
     ) => (
-        <div className="flex flex-col w-full items-center mt-2">
+        <div className="flex flex-col w-full items-center mt-2 pl-[10px] pr-[10px]">
             <label htmlFor={id} className="text-main1-3"></label>
             <input
                 id={id}
@@ -44,14 +47,30 @@ const Profile = () => {
         </div>
     );
 
+    interface StatsProps {
+        label1: string;
+        value1: string | number;
+        label2: string;
+        value2: string | number;
+    }
+    
+    const Stats: React.FC<StatsProps> = ({ label1, value1, label2, value2 }) => {
+        return (
+            <div className="flex flex-row w-full justify-center items-center">
+                <div className="mr-4 w-full flex justify-center"><span className="text-main1-3">{label1}: {value1}</span></div>
+                <div className="w-full flex justify-center"><span className="text-main1-3">{label2}: {value2}</span></div>
+            </div>
+        );
+    };
+
     return (
         <div className="bg-main1-2 min-h-screen w-full flex flex-col items-center overflow-y-auto">
-            <div className="w-full h-[70px] bg-main1-1 flex items-center justify-center mx-auto border-l-[0.1px] border-main1-3">
+            <div className="w-full h-[70px] bg-main1-1 flex items-center justify-start mx-auto border-l-[0.1px] border-main1-3">
                 <h1 className="text-main2-1 pl-[50px] text-3xl font-bold">User Profile</h1>
             </div>
 
-            <div className="mt-[10px] flex flex-row flex-wrap justify-center w-full">
-                <div className="min-w-[115px] max-w-[700px] h-[650px] w-[370px] mr-[30px] ml-[20px] flex flex-col items-center">
+            <div className="mt-[10px] flex flex-row justify-center w-full">
+                <div className="h-[650px] w-[370px] mr-[30px] ml-[20px] flex flex-col items-center basis-1/3">
                     <div className="bg-main1-1 w-full flex flex-col items-center p-[1px] pb-[30px] mb-[30px]">
                         <div className="pb-[10px] pt-[30px]">
                             <img src="public/Logo_UET.png" alt="Logo" className="w-[180px]" />
@@ -75,28 +94,35 @@ const Profile = () => {
                         </div>
 
                         <div className="p-[10px] w-full flex justify-center">
-                            <span className="text-main1-3">hiển thị thời gian ở đây</span>
+                            <span className="text-main1-3">{lastUpdated}</span>
                         </div>
 
                         <div className="flex flex-row w-full justify-center">
                             <button 
-                                className="text-main2-1 w-[120px] h-[60px] bg-slate-800 m-[10px] text-center rounded-md" 
+                                className="text-main2-1 w-[180px] h-[60px] bg-slate-800 m-[10px] text-center rounded-md" 
                                 onClick={handleEditToggle}
                             >
-                                {isEditing ? 'Save' : 'Edit Profile'}
+                                {isEditing ? 'Lưu thay đổi' : 'Thông tin cá nhân'}
                             </button>
                             <button className="text-main2-1 w-[180px] h-[60px] bg-slate-800 m-[10px] text-center rounded-md">
-                                Change Password
+                                Mật khẩu
                             </button>
                         </div>
                     </div>
 
-                    <div className="bg-main1-1 w-full flex flex-col items-center p-[1px] pb-[30px] mb-[30px]">
-                        {/* */}
+                    <div className="bg-main1-1 flex flex-col w-full mb-[30px]">
+                        <div className="w-full bg-slate-900 h-[50px] flex items-center pl-[20px]">
+                            <span className="text-main1-3">Thống kê</span>
+                        </div>
+                        <div className="w-full p-[20px] flex flex-col justify-center">
+                            <Stats label1="Reputation" value1={100} label2="Rank" value2={1} />
+                            <Stats label1="Signal" value1={75} label2="Percentile" value2={95} />
+                            <Stats label1="Impact" value1={50} label2="Percentile" value2={90} />
+                        </div>
                     </div>
                 </div>
 
-                <div className="min-w-[100px] max-w-[1000px] h-[650px] w-[800px] flex flex-col items-center">
+                <div className="h-[650px] w-[800px] flex flex-col items-center basis-2/3 mr-[20px]">
                     <div className="bg-main1-1 flex flex-col w-full mb-[30px]">
                         <div className="w-full bg-slate-900 h-[50px] flex items-center pl-[20px]">
                             <span className="text-main1-3">About {userName}</span>
@@ -118,7 +144,7 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    <div className="bg-main1-1 flex flex-col w-full mb-[30px]">
+                    <div className="bg-main1-1 flex flex-col w-full mb-[30px] h-[500px]">
                         <div className="w-full bg-slate-900 h-[50px] flex items-center pl-[20px]">
                             <span className="text-main1-3">Hacktivity</span>
                         </div>
