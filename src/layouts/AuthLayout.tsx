@@ -1,7 +1,10 @@
+import { Outlet } from "react-router-dom";
+import { Login } from "../pages/Auth";
+
 function AuthLayout(){
   return (
     <div>
-      Auth
+      <Outlet/>
     </div>
   );
 }

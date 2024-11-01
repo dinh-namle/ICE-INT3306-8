@@ -180,7 +180,6 @@ const SubmitReport: React.FC = () => {
                         <div className="step-container p-2 rounded" style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F', flex: '1' }}>
                         <div>
                             <h2 className="text-xl font-semibold mb-2">Proof of Concept</h2>
-                            <p className="font-light">The proof of concept is the most important part of your report submission. Clear, reproducible steps will help us validate this issue as quickly as possible.</p>
                             <label htmlFor="title" className="block mb-1 font-medium">Title:</label>
                             <input type="text" id="title" name="title" className="w-full p-2 rounded" required value={formData.title} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }} />
                             <label htmlFor="description" className="block mb-1 font-medium">Description:</label>

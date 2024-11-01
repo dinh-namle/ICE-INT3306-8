@@ -1,17 +1,20 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css'
-import { Admin, AdminNotification, Home, Programs, LeaderBoard, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings } from './pages';
+import { Admin, AdminNotification, Home, Programs, LeaderBoard, SubmitReport, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings, Login } from './pages';
 import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout';
 import HomeLayout from './layouts/HomeLayout';
-import SubmitReport from './pages/Researcher/SubmitReport';
-
+import AuthLayout from './layouts/AuthLayout';
 export default function App() {
   return (
     <div>
       <Routes>
         <Route element={<HomeLayout />}>
           <Route path='/' element={<Home />} />
+        </Route>
+
+        <Route element={<AuthLayout />}>
+          <Route path='/login' element={<Login />} />
         </Route>
 
         <Route element={<AdminLayout />}>
