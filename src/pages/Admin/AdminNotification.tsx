@@ -11,7 +11,7 @@ const data = [
 
 const buttons = ["Tất cả", "Chưa đọc", "Đã đọc"];
 
-const Notification = () => {
+const AdminNotification = () => {
   const [active, setActive] = React.useState<number>(1);
 
   const handleClick = (index: number) => {
@@ -37,4 +37,4 @@ const Notification = () => {
   )
 }
 
-export default Notification
+export default AdminNotification

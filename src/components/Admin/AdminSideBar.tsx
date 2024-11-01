@@ -15,7 +15,7 @@ const items = [
   { title: 'Tài khoản', icon: <FaClipboardUser />, url: '/admin/accounts' },
   { title: 'Programs', icon: <FaBoxArchive />, url: '/admin/programs' },
   { title: 'Reports', icon: <FaFileWaveform />, url: '/admin/reports' },
-  { title: 'Đổi mật khẩu', icon: <FaGear />, url: '/admin/change-password' }
+  { title: 'Đổi mật khẩu', icon: <FaGear />, url: '/admin/settings' }
 ]
 
 const AdminSideBar: React.FC = () => {
