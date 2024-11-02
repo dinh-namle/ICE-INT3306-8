@@ -9,47 +9,47 @@ const Login: React.FC = () => {
         </h2>
         <form className="space-y-4">
           <div>
-            <label className="text-sm text-[#8799B5] font-bold">Email</label>
+            <label className="text-sm text-[#A4B1CD] font-bold">Email</label>
             <input
               type="email"
-              className="w-full px-4 py-2 mt-1 bg-[#182232] text-[#FFFFFF] border border-[#1E293A] rounded-md focus:outline-none focus:ring-2 focus:ring-[#9FEF00]"
+              className="w-full px-4 py-2 mt-1 bg-[#182232] text-[#FFFFFF] border border-[#A4B1CD] rounded-md focus:outline-none focus:ring-2 focus:ring-[#9FEF00]"
             />
           </div>
           <div>
-            <label className="text-sm text-[#8799B5] font-bold">Password</label>
+            <label className="text-sm text-[#A4B1CD] font-bold">Password</label>
             <input
               type="password"
-              className="w-full px-4 py-2 mt-1 bg-[#182232] text-[#FFFFFF] border border-[#1E293A] rounded-md focus:outline-none focus:ring-2 focus:ring-[#9FEF00]"
+              className="w-full px-4 py-2 mt-1 bg-[#182232] text-[#FFFFFF] border border-[#A4B1CD] rounded-md focus:outline-none focus:ring-2 focus:ring-[#9FEF00]"
             />
           </div>
           <div className="flex items-center justify-between">
-            <label className="flex items-center text-sm text-[#8799B5] font-bold">
+            <label className="flex items-center text-sm text-[#A4B1CD] font-bold">
               <input type="checkbox" className="mr-2" />
               Remember Me
             </label>
-            <a href="#" className="text-sm text-[#8799B5] font-bold hover:underline">
+            <a href="#" className="text-sm text-[#A4B1CD] font-bold hover:underline">
               Forgot Password?
             </a>
           </div>
           <button
             type="submit"
-            className="w-full px-4 py-2 font-semibold text-[#8799B5] bg-[#182232] border border-[#1E293A] rounded-md hover:bg-[#1E293A] font-bold"
+            className="w-full px-4 py-2 font-semibold text-[#A4B1CD] bg-[#182232] border border-[#A4B1CD] rounded-md hover:bg-[#1E293A] font-bold"
           >
             Sign in
           </button>
         </form>
         <div className="flex items-center justify-center space-x-2">
           <span className="h-px bg-[#1E293A] w-1/4"></span>
-          <span className="text-sm text-[#8799B5] font-bold">or</span>
+          <span className="text-sm text-[#A4B1CD] font-bold">or</span>
           <span className="h-px bg-[#1E293A] w-1/4"></span>
         </div>
-        <button className="w-full px-4 py-2 mt-2 font-semibold text-[#FFFFFF] bg-[#182232] border border-[#1E293A] rounded-md hover:bg-[#1E293A]">
+        <button className="w-full px-4 py-2 mt-2 font-semibold text-[#FFFFFF] bg-[#182232] border border-[#A4B1CD] rounded-md hover:bg-[#1E293A]">
           Sign in with Google
         </button>
-        <button className="w-full px-4 py-2 mt-2 font-semibold text-[#FFFFFF] bg-[#182232] border border-[#1E293A] rounded-md hover:bg-[#1E293A]">
+        <button className="w-full px-4 py-2 mt-2 font-semibold text-[#FFFFFF] bg-[#182232] border border-[#A4B1CD] rounded-md hover:bg-[#1E293A]">
           Sign in with GitHub
         </button>
-        <p className="text-sm text-center text-[#8799B5]">
+        <p className="text-sm text-center text-[#A4B1CD]">
           New to ICE?{' '}
           <a href="#" className="text-[#9FEF00] hover:underline">
             Create Account
