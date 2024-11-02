@@ -1,10 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css'
-import { Admin, AdminNotification, Home, Programs, LeaderBoard, SubmitReport, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings, Login } from './pages';
+import { Admin, AdminNotification, Home, Programs, LeaderBoard, SubmitReport, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings, Login, Inbox } from './pages';
 import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout';
 import HomeLayout from './layouts/HomeLayout';
 import AuthLayout from './layouts/AuthLayout';
+import PartnerLayout from './layouts/PartnerLayout';
 export default function App() {
   return (
     <div>
@@ -31,6 +32,10 @@ export default function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/leaderboard' element={<LeaderBoard />} />
           <Route path='/SubmitReport' element={<SubmitReport />} />
+        </Route>
+
+        <Route element={<PartnerLayout />}>
+          <Route path='inbox' element={<Inbox />}/>
         </Route>
 
       </Routes>
