@@ -5,10 +5,10 @@ import { IoIosPaper } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
 
-const PartnerSideBar: React.FC = () => {
+const SideBar: React.FC = () => {
   const location = useLocation();
 
-  const PartnerSideBarStyle: React.CSSProperties = {
+  const SideBarStyle: React.CSSProperties = {
     position: 'fixed',
     top: 0,
     left: 0,
@@ -17,7 +17,7 @@ const PartnerSideBar: React.FC = () => {
   };
 
   return (
-    <div style={PartnerSideBarStyle} className="flex flex-col bg-main1-1 h-dvh w-[60px] items-center">
+    <div style={SideBarStyle} className="flex flex-col bg-main1-1 h-dvh w-[60px] items-center">
       <img src="/ICE.png" alt="logo_ice" className="h-[18px] object-contain my-8" />
       <Link className={`py-4 ${location.pathname === "/programs" ? "bg-main2-1" : "bg-main1-1"} w-full flex flex-col items-center`} to={"/programs"}>
         <FiTarget className="stroke-white size-6" />
@@ -38,4 +38,4 @@ const PartnerSideBar: React.FC = () => {
   );
 }
 
-export default PartnerSideBar;
+export default SideBar;
