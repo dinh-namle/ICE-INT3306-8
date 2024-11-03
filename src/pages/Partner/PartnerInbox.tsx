@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Inbox = () => {
+const PartnerInbox = () => {
     const navigate = useNavigate();
 
     const handleNavigate = (path: string) => {
@@ -12,4 +12,4 @@ const Inbox = () => {
     )
 }
 
-export default Inbox;
+export default PartnerInbox;
