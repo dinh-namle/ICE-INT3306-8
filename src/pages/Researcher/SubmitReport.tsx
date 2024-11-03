@@ -1,5 +1,7 @@
+import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Part1, Part2, Part3, Part4 } from '../../components/ReportForm.tsx';
 
 interface FormData {
     asset: string;
@@ -37,166 +39,92 @@ const SubmitReport: React.FC = () => {
         files: [],
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setFormData(prevData => ({
+            ...prevData,
             [name]: value,
-        });
+        }));
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
-            setFormData({
-                ...formData,
-                files: Array.from(e.target.files),
-            });
+            const filesArray = Array.from(e.target.files);
+            setFormData(prevData => ({
+                ...prevData,
+                files: filesArray,
+            }));
         }
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const { asset, weakness, title, description, impact } = formData;
-        if (asset && weakness && title && description && impact) {
-            alert('Report submitted successfully!');
-            // Navigate to the desired route
-            navigate('/report-success');
-        } else {
-            alert('Please fill out all required fields.');
-        }
+        navigate('/thank-you');
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen" style={{ backgroundColor: '#0B121F' }}>
-            <div className="form-container p-8 shadow-md rounded-lg space-y-6" style={{ backgroundColor: '#182232', color: '#fff', width: '80%' }}>
-                <h1 className="text-2xl font-bold text-center mb-6">Submit Vulnerability Report</h1>
-                <form id="reportForm" className="space-y-4" onSubmit={handleSubmit}>
-                    {/* Part 1: Asset */}
-                    <div className="flex items-start">
-                        <div className="step-number" style={{ borderRadius: '50%', backgroundColor: '#2d3748', fontSize: '2rem', width: '3rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>1</div>
-                        <div className="step-container p-2 rounded" style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F', flex: '1' }}>
-                            <h2 className="text-xl font-semibold mb-2">Asset</h2>
-                            <p className="font-light">Select the attack surface of this issue.</p>
-                            <select id="asset" name="asset" className="w-full p-2 rounded" required value={formData.asset} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }}>
-                                <option value="">Select Asset</option>
-                                <option value="uet.vnu.edu.vn">uet.vnu.edu.vn (Domain - critical - Eligible for bounty)</option>
-                                <option value="fit.uet.vnu.edu.vn">fit.uet.vnu.edu.vn (Domain - critical - Eligible for bounty)</option>
-                                <option value="fet.vnu.edu.vn">fet.vnu.edu.vn (Domain - critical - Eligible for bounty)</option>
-                            </select>
+        <div className="w-full bg-main1-2">
+            <div className="container mx-auto p-4">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+                    {/* Left section */}
+                    <div className="md:col-span-3 bg-main1-2 text-white p-4 rounded">
+                        <h2 className="text-xl font-semibold mb-2">Navigation</h2>
+                        <ul className="space-y-2">
+                            <li><a href="#security" className="text-blue-400 hover:underline">Security page</a></li>
+                            <li><a href="#guidelines" className="text-blue-400 hover:underline">Program guidelines</a></li>
+                            <li><a href="#scope" className="text-blue-400 hover:underline">Scope</a></li>
+                            <li><a href="#hacktivity" className="text-blue-400 hover:underline">Hacktivity</a></li>
+                            <li><a href="#thanks" className="text-blue-400 hover:underline">Thanks</a></li>
+                            <li><a href="#updates" className="text-blue-400 hover:underline">Updates</a></li>
+                            <li><a href="#collaborators" className="text-blue-400 hover:underline">Collaborators</a></li>
+                        </ul>
+                    </div>
+                    {/* Middle section */}
+                    <div className="md:col-span-6 bg-main1-2 p-4 rounded">
+                        <header className="mb-6 text-center">
+                            <h1 className="text-3xl font-bold text-white">Submit a Vulnerability Report</h1>
+                        </header>
+                        <form onSubmit={handleSubmit}>
+                            <Part1 asset={formData.asset} onChange={handleChange} />
+                            <Part2 weakness={formData.weakness} onChange={handleChange} />
+                            <Part3 formData={formData} onChange={handleChange} />
+                            <Part4
+                                title={formData.title}
+                                description={formData.description}
+                                impact={formData.impact}
+                                files={formData.files}
+                                onChange={handleChange}
+                                onFileChange={handleFileChange}
+                            />
+                            <button type="submit" className="mt-4 p-2 bg-blue-600 text-white rounded">Submit</button>
+                        </form>
+                    </div>
+                    {/* Right section */}
+                    <div className="md:col-span-3 bg-main1-2 text-white p-4 rounded">
+                        <h2 className="text-xl font-semibold mb-2">Rewards and Statistics</h2>
+                        <p className="mb-2">Submit your report and potentially earn rewards based on the severity of the issue.</p>
+                        <div className="mb-4">
+                            <h3 className="text-lg font-medium">Reward Levels:</h3>
+                            <ul className="space-y-1">
+                                <li>Low: $200</li>
+                                <li>Medium: $500</li>
+                                <li>High: $1,000</li>
+                                <li>Critical: $2,000</li>
+                            </ul>
+                        </div>
+                        <div className="mb-4">
+                            <h3 className="text-lg font-medium">Statistics:</h3>
+                            <ul className="space-y-1">
+                                <li>Total Bounties Paid: $50,000</li>
+                                <li>Average Bounty: $700</li>
+                                <li>Top Bounty: $5,000</li>
+                                <li>Bounties in Last 90 Days: $10,000</li>
+                                <li>Reports in Last 90 Days: 25</li>
+                                <li>Last Report Resolved: 2 days ago</li>
+                            </ul>
                         </div>
                     </div>
-                    {/* Part 2: Weakness */}
-                    <div className="flex items-start">
-                        <div className="step-number" style={{ borderRadius: '50%', backgroundColor: '#2d3748', fontSize: '2rem', width: '3rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>2</div>
-                        <div className="step-container p-2 rounded" style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F', flex: '1' }}>
-                            <h2 className="text-xl font-semibold mb-2">Weakness</h2>
-                            <p className="font-light">Select the type of the potential issue you have discovered. Can't pick just one? Select the best match or submit a separate report for each distinct weakness.</p>
-                            <select id="weakness" name="weakness" className="w-full p-2 rounded" required value={formData.weakness} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }}>
-                                <option value="">Select Weakness</option>
-                                <option value="Absolute Path Traversal">Absolute Path Traversal (CAPEC-597)</option>
-                                <option value="Acceptance of Extraneous Untrusted Data">Acceptance of Extraneous Untrusted Data With Trusted Data</option>
-                                <option value="Access Control Check After Asset Access">Access Control Check Implemented After Asset is Accessed</option>
-                                <option value="Accessing Functionality Not Constrained by ACLs">Accessing Functionality Not Properly Constrained by ACLs</option>
-                            </select>
-                        </div>
-                    </div>
-                    {/* Part 3: Severity */}
-                    <div className="flex items-start">
-                        <div className="step-number" style={{ borderRadius: '50%', backgroundColor: '#2d3748', fontSize: '2rem', width: '3rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>3</div>
-                        <div className="step-container p-2 rounded" style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F', flex: '1' }}>
-                        <div>
-                            <h2 className="text-xl font-semibold mb-2">Severity(Optional)</h2>
-                            <p className="font-light">Estimate the severity of this issue.</p>
-                            <div className="grid grid-cols-1 gap-4">
-                                <div>
-                                    <label htmlFor="attack_vector" className="block mb-1 font-medium">Attack Vector:</label>
-                                    <select id="attack_vector" name="attack_vector" className="w-full p-2 rounded" value={formData.attack_vector} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }}>
-                                        <option value="Network">Network</option>
-                                        <option value="Adjacent">Adjacent</option>
-                                        <option value="Local">Local</option>
-                                        <option value="Physical">Physical</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label htmlFor="attack_complexity" className="block mb-1 font-medium">Attack Complexity:</label>
-                                    <select id="attack_complexity" name="attack_complexity" className="w-full p-2 rounded" value={formData.attack_complexity} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }}>
-                                        <option value="Low">Low</option>
-                                        <option value="High">High</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label htmlFor="privileges_required" className="block mb-1 font-medium">Privileges Required:</label>
-                                    <select id="privileges_required" name="privileges_required" className="w-full p-2 rounded" value={formData.privileges_required} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }}>
-                                        <option value="None">None</option>
-                                        <option value="Low">Low</option>
-                                        <option value="High">High</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label htmlFor="user_interaction" className="block mb-1 font-medium">User Interaction:</label>
-                                    <select id="user_interaction" name="user_interaction" className="w-full p-2 rounded" value={formData.user_interaction} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }}>
-                                        <option value="None">None</option>
-                                        <option value="Required">Required</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label htmlFor="scope" className="block mb-1 font-medium">Scope:</label>
-                                    <select id="scope" name="scope" className="w-full p-2 rounded" value={formData.scope} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }}>
-                                        <option value="Unchanged">Unchanged</option>
-                                        <option value="Changed">Changed</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label htmlFor="confidentiality_impact" className="block mb-1 font-medium">Confidentiality Impact:</label>
-                                    <select id="confidentiality_impact" name="confidentiality_impact" className="w-full p-2 rounded" value={formData.confidentiality_impact} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }}>
-                                        <option value="None">None</option>
-                                        <option value="Low">Low</option>
-                                        <option value="High">High</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label htmlFor="integrity_impact" className="block mb-1 font-medium">Integrity Impact:</label>
-                                    <select id="integrity_impact" name="integrity_impact" className="w-full p-2 rounded" value={formData.integrity_impact} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }}>
-                                        <option value="None">None</option>
-                                        <option value="Low">Low</option>
-                                        <option value="High">High</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label htmlFor="availability_impact" className="block mb-1 font-medium">Availability Impact:</label>
-                                    <select id="availability_impact" name="availability_impact" className="w-full p-2 rounded" value={formData.availability_impact} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }}>
-                                        <option value="None">None</option>
-                                        <option value="Low">Low</option>
-                                        <option value="High">High</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                   {/* Part 4: Proof of Concept */}
-                   <div className="flex items-start">
-                        <div className="step-number" style={{ borderRadius: '50%', backgroundColor: '#2d3748', fontSize: '2rem', width: '3rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>4</div>
-                        <div className="step-container p-2 rounded" style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F', flex: '1' }}>
-                        <div>
-                            <h2 className="text-xl font-semibold mb-2">Proof of Concept</h2>
-                            <label htmlFor="title" className="block mb-1 font-medium">Title:</label>
-                            <input type="text" id="title" name="title" className="w-full p-2 rounded" required value={formData.title} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }} />
-                            <label htmlFor="description" className="block mb-1 font-medium">Description:</label>
-                            <textarea id="description" name="description" className="w-full p-2 rounded" required value={formData.description} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }}></textarea>
-                            <label htmlFor="impact" className="block mb-1 font-medium">Impact:</label>
-                            <textarea id="impact" name="impact" className="w-full p-2 rounded" required value={formData.impact} onChange={handleChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }}></textarea>
-                            <label htmlFor="files" className="block mb-1 font-medium">Attach Files:</label>
-                            <input type="file" id="files" name="files" multiple className="w-full p-2 rounded" onChange={handleFileChange} style={{ backgroundColor: '#1E2939', color: '#fff', border: '1px solid #0B121F' }} />
-                        </div>
-                    </div>
-                    </div>
-                    {/* Part 5: Buttons */}
-                    <div className="flex justify-between pt-4">
-                        <button type="button" className="bg-gray-500 text-white p-2 rounded hover:bg-gray-600">Create Draft</button>
-                        <button type="submit" className="bg-green-500 text-white p-2 rounded hover:bg-green-600">Submit Report</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     );
