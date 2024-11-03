@@ -1,10 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css'
-import { Admin, AdminNotification, Home, Programs, LeaderBoard, SubmitReport, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings, Login, ResearchRegister } from './pages';
+import { Admin, AdminNotification, Home, Programs, LeaderBoard, SubmitReport, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings, Login, PartnerInbox, ResearchRegister } from './pages';
 import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout';
 import HomeLayout from './layouts/HomeLayout';
 import AuthLayout from './layouts/AuthLayout';
+import PartnerLayout from './layouts/PartnerLayout';
 import AccountRegister from './pages/Auth/AccountRegister';
 import ResearcherRegister from './pages/Auth/ResearcherRegister';
 import PartnerRegister from './pages/Auth/PartnerRegister';
@@ -37,6 +38,10 @@ export default function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/leaderboard' element={<LeaderBoard />} />
           <Route path='/SubmitReport' element={<SubmitReport />} />
+        </Route>
+
+        <Route element={<PartnerLayout />}>
+          <Route path='/partnerinbox' element={<PartnerInbox />}/>
         </Route>
 
       </Routes>
