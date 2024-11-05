@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AdminTitle, Modal, Table } from '../../components'
 import { FaFilter, FaMagnifyingGlass } from 'react-icons/fa6'
+import CreateAccountModal from './CreateAccountModal'
 
 const needHeader = false
 const columns = ['Status', 'Type', 'Message', 'Time']
@@ -47,7 +48,7 @@ const AdminAccounts = () => {
       </div>
 
       {openModal && <Modal onClose={() => {handleOpenModal()}}>
-        <h1>Hello</h1>
+        <CreateAccountModal onClose={() => {handleOpenModal()}} />
       </Modal>}
     </div>
   )
