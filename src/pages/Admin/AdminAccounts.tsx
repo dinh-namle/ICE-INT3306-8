@@ -1,4 +1,5 @@
-import { AdminTitle, Table } from '../../components'
+import { useState } from 'react'
+import { AdminTitle, Modal, Table } from '../../components'
 import { FaFilter, FaMagnifyingGlass } from 'react-icons/fa6'
 
 const needHeader = false
@@ -10,6 +11,11 @@ const data = [
 ]
 
 const AdminAccounts = () => {
+
+  const [openModal, setOpenModal] = useState(false)
+
+  const handleOpenModal = () => { setOpenModal(!openModal) }
+
   return (
     <div className='w-full h-lvh bg-main1-1 flex flex-col'>
       <AdminTitle title='Tài khoản' />
@@ -30,7 +36,7 @@ const AdminAccounts = () => {
           </div>
         </form>
         <div className='basis-[36%] flex justify-end'>
-          <button onClick={null} className='basis-auto transition ease-in-out duration-100 hover:scale-110 text-main1-1 bg-main2-1 font-semibold py-[4px] px-[16px] mx-1 rounded-md'>
+          <button onClick={() => {handleOpenModal()}} className='basis-auto transition ease-in-out duration-100 hover:scale-110 text-main1-1 bg-main2-1 font-semibold py-[4px] px-[16px] mx-1 rounded-md'>
             Tạo mới
           </button>
         </div>
@@ -39,6 +45,10 @@ const AdminAccounts = () => {
       <div className='w-full h-full '>
         <Table needHeader={needHeader} columns={columns} data={data} />
       </div>
+
+      {openModal && <Modal onClose={() => {handleOpenModal()}}>
+        <h1>Hello</h1>
+      </Modal>}
     </div>
   )
 }
