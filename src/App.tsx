@@ -41,7 +41,7 @@ export default function App() {
         </Route>
 
         <Route element={<PartnerLayout />}>
-          <Route path='/partnerinbox' element={<PartnerInbox />}/>
+          <Route path='/partner/inbox' element={<PartnerInbox />}/>
         </Route>
 
       </Routes>
