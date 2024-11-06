@@ -47,7 +47,7 @@ const AdminAccounts = () => {
         <Table needHeader={needHeader} columns={columns} data={data} />
       </div>
 
-      {openModal &&<Modal onClose={() => {handleOpenModal()}}>
+      {openModal && <Modal onClose={() => {handleOpenModal()}}>
         <CreateAccountModal onClose={() => {handleOpenModal()}} />
       </Modal>}
     </div>
