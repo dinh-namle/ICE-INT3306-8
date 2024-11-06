@@ -5,7 +5,7 @@ function PartnerLayout(){
   return (
     <div className="flex flex-row">
       <PartnerSideBar />
-      <div className="ml-[60px] w-full">
+      <div className="ml-[250px] w-full">
         <Outlet />
       </div>
     </div>
