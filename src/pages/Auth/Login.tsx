@@ -51,9 +51,7 @@ const Login: React.FC = () => {
         </button>
         <p className="text-sm text-center text-[#A4B1CD]">
           New to ICE?{' '}
-          <a href="#" className="text-[#9FEF00] hover:underline">
-            Create Account
-          </a>
+          <a href="http://localhost:3000/register" className="text-[#9FEF00] hover:underline">Create Account</a>
         </p>
       </div>
     </div>
