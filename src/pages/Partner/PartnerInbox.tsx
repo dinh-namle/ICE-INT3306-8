@@ -42,7 +42,8 @@ const PartnerInbox: React.FC = () => {
     const navigate = useNavigate();
     const [searchTerm1, setSearchTerm1] = useState<string>('');
     const [searchTerm2, setSearchTerm2] = useState<string>('');
-    const [currentChat, setCurrentChat] = useState<string | null>(null); 
+    const [currentChat, setCurrentChat] = useState<string | null>(null);
+    const [messages, setMessages] = useState<{ avt: string; content: string; time: string }[]>([]);
 
     const handleSearchChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm1(e.target.value);
@@ -69,7 +70,22 @@ const PartnerInbox: React.FC = () => {
     };
 
     const openChat = (userName: string) => {
-        setCurrentChat(userName); 
+        setCurrentChat(userName);
+    };
+
+    const createMessage = (avt: string, content: string) => {
+        const newMessage = {
+            content,
+            avt,
+            time: new Date().toLocaleTimeString(),
+        };
+        setMessages([...messages, newMessage]); 
+    };
+
+    const handleSendMessage = (content: string) => {
+        if (currentChat) {
+            createMessage("/Logo_UET.png", content); 
+        }
     };
 
     return (
@@ -89,7 +105,7 @@ const PartnerInbox: React.FC = () => {
                         className="border border-gray-300 rounded-full p-2 w-full"
                     />
                 </div>
-                <div className="basis-1/6">Chuông</div>
+                <div className="basis-1/6 flex justify-center items-center">Chuông</div>
             </div>
 
             <div className="flex flex-row w-full h-[90vh]">
@@ -136,13 +152,25 @@ const PartnerInbox: React.FC = () => {
                                 <div className="basis-[75%] flex items-center w-full">
                                     <span className="text-white text-xl">{currentChat}</span>
                                 </div>
-                                <div className="basis-[10%] flex items-center justify-center text-white w-full">
-                                    !
-                                </div>
+                                <button onClick={handleAddChat} className="basis-[10%] flex items-center justify-center text-white w-full">
+                                    <div className="rounded-lg w-[20%] h-[20%] bg-main2-1">!</div>
+                                </button>
                             </div>
-                            
-                            <div className="basis-[70%]">
-                                message inbox
+
+                            <div className="basis-[70%] flex flex-col items-end overflow-auto pr-[20px]"
+                                style={{
+                                    maxHeight: 'auto',
+                                    overflowY: 'scroll', 
+                                    scrollbarWidth: 'none', 
+                                    msOverflowStyle: 'none' as React.CSSProperties['msOverflowStyle'],
+                                }}
+                            >
+                                {messages.map((msg, index) => (
+                                    <div key={index} className="flex items-center my-2 justify-end">
+                                        <div className="bg-gray-200 rounded-lg p-2 max-w-[70%] break-words">{msg.content}</div>
+                                        <img src={msg.avt} alt="" className="w-10 h-10 rounded-full ml-2" />
+                                    </div>
+                                ))}
                             </div>
 
                             <div className="basis-[15%] flex flex-row border-t-[0.25px] border-main1-2">
@@ -150,10 +178,16 @@ const PartnerInbox: React.FC = () => {
                                     <input 
                                         type="text"
                                         placeholder="Aa"
-                                        className="basis-[80%] border border-main2-1 rounded-xl p-2 w-full bg-main1-2"
+                                        className="basis-[80%] border border-main2-1 rounded-xl p-2 w-full bg-main1-2 text-white"
+                                        onKeyPress={(e) => {
+                                            if (e.key === 'Enter') {
+                                                handleSendMessage(e.currentTarget.value);
+                                                e.currentTarget.value = ''; 
+                                            }   
+                                        }}
                                     />
-                                    <div className="basis-[10%] w-full">Gửi</div>
-                                    <div className="basis-[10%] w-full">Link</div>
+                                    <div className="basis-[10%] w-full flex justify-center items-center">Gửi</div>
+                                    <div className="basis-[10%] w-full flex justify-center items-center">Link</div>
                                 </div>
                             </div>
                         </div>
