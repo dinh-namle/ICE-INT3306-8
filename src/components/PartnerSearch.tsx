@@ -8,7 +8,7 @@ interface PartnerSearchProps {
 
 const PartnerSearch: React.FC<PartnerSearchProps> = ({ searchTerm, onSearchChange, onSearchKeyPress }) => {
     return (
-        <div className="basis-[10%] flex flex-row items-center justify-center w-full mb-[40px]">
+        <div className="flex flex-row items-center justify-center w-full">
             <div className="basis-3/6">
                 <div><span className="text-main2-1 text-2xl">Hello Imposter</span></div>
                 <div><span className="text-main1-3">Hãy để chúng tôi bảo vệ bạn</span></div>
