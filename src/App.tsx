@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css'
-import { Admin, AdminNotification, Home, Programs, LeaderBoard, SubmitReport, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings, Login, PartnerInbox, ResearchRegister, Reward } from './pages';
+import { Admin, AdminNotification, Home, Programs, LeaderBoard, SubmitReport, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings, Login, PartnerInbox, ResearchRegister, Reward, Hacktivity } from './pages';
 import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout';
 import HomeLayout from './layouts/HomeLayout';
@@ -39,6 +39,7 @@ export default function App() {
           <Route path='/leaderboard' element={<LeaderBoard />} />
           <Route path='/SubmitReport' element={<SubmitReport />} />
           <Route path='/Reward' element={<Reward />} />
+          <Route path='/Hacktivity' element={<Hacktivity />} />
         </Route>
 
         <Route element={<PartnerLayout />}>
