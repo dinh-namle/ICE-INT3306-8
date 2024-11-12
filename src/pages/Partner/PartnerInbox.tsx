@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { PartnerSearch } from '../../components';
 
 interface CreateChatProps {
     avt: string;
@@ -90,22 +91,12 @@ const PartnerInbox: React.FC = () => {
 
     return (
         <div className="bg-main1-2 min-h-screen w-full flex flex-col items-center overflow-y-auto pl-[30px] pr-[30px] pt-[60px] pb-[60px]">
-            <div className="flex flex-row w-full mb-[40px]">
-                <div className="basis-3/6">
-                    <div><span className="text-main2-1 text-2xl">Hello Imposter</span></div>
-                    <div><span className="text-main1-3">Hãy để chúng tôi bảo vệ bạn</span></div>
-                </div>
-                <div className="basis-2/6">
-                    <input 
-                        type="text" 
-                        value={searchTerm1} 
-                        onChange={handleSearchChange1} 
-                        onKeyPress={handleKeyPress1}
-                        placeholder="Tìm kiếm ..." 
-                        className="border border-gray-300 rounded-full p-2 w-full"
-                    />
-                </div>
-                <div className="basis-1/6 flex justify-center items-center">Chuông</div>
+            <div className="w-full pb-[40px]">
+                <PartnerSearch 
+                    searchTerm={searchTerm1} 
+                    onSearchChange={handleSearchChange1} 
+                    onSearchKeyPress={handleKeyPress1} 
+                />
             </div>
 
             <div className="flex flex-row w-full h-[90vh]">
