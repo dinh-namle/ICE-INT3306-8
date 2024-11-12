@@ -85,7 +85,7 @@ const PartnerRegister = () => {
             Continue
           </button>
           <p className="text-center text-[#A4B1CD]">
-            Already have a ICE account? <a href="#" className="text-[#9FEF00] hover:underline">Sign in</a>
+            Already have a ICE account? <a href="http://localhost:3000/login" className="text-[#9FEF00] hover:underline">Sign in</a>
           </p>
         </form>
       </div>
