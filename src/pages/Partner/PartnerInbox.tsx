@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PartnerSearch } from '../../components';
+import { BsFillSendFill } from 'react-icons/bs';
+import { FaLink, FaPlay } from 'react-icons/fa6';
 
 interface CreateChatProps {
     avt: string;
@@ -32,7 +34,7 @@ const CreateChat: React.FC<CreateChatProps> = ({ avt, reportName, userName, time
                     </div>
                 </div>
                 <div className="basis-[10%] w-full flex items-center">
-                    <div className="text-main2-1">B</div>
+                    <div className="text-main2-1"> <FaPlay /> </div>
                 </div>
             </div>
         </button>
@@ -177,8 +179,8 @@ const PartnerInbox: React.FC = () => {
                                             }   
                                         }}
                                     />
-                                    <div className="basis-[10%] w-full flex justify-center items-center">Gửi</div>
-                                    <div className="basis-[10%] w-full flex justify-center items-center">Link</div>
+                                    <div className="basis-[10%] w-full flex justify-center items-center"><BsFillSendFill className="size-6 fill-main2-1"/></div>
+                                    <div className="basis-[10%] w-full flex justify-start items-center"><FaLink className="size-6 fill-main2-1" /></div>
                                 </div>
                             </div>
                         </div>
