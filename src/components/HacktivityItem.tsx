@@ -1,34 +1,42 @@
 import React from 'react';
 
-interface HacktivityItemProps {
+interface OverviewItemProps {
     title: string;
     date: string;
     status: string;
-    bounty: string;
     reporter: string;
     shortInfo: string;
+    bounty: string;
 }
 
-const HacktivityItem: React.FC<HacktivityItemProps> = ({ title, date, status, bounty, reporter, shortInfo }) => {
+const HacktivityItem: React.FC<OverviewItemProps> = ({ title, date, status, reporter, shortInfo, bounty }) => {
     return (
-        <div className="bg-main1-2 text-white p-4 rounded mb-4 flex flex-col">
-            <div className="flex justify-between items-center mb-2">
+        <div className="bg-gray-800 text-white p-4 rounded-lg shadow-md mb-4 flex flex-col space-y-3">
+            <div className="flex justify-between items-center">
                 <div>
-                    <h3 className="text-xl font-semibold">{title}</h3>
-                    <p className="text-sm text-main1-3">{date}</p>
-                    <p className="text-sm">Reporter: {reporter}</p>
+                    <h3 className="text-lg font-bold">{title}</h3>
+                    <p className="text-xs text-gray-400">{date}</p>
                 </div>
                 <div className="text-right">
-                    <p className={`text-sm font-semibold ${status === 'Resolved' ? 'text-main2-1' : 'text-sub-1'}`}>{status}</p>
-                    <p className="text-sm">Bounty: {bounty}</p>
+                    <span className={`text-sm font-semibold ${status === 'Resolved' ? 'text-green-500' : 'text-yellow-500'}`}>
+                        {status}
+                    </span>
                 </div>
             </div>
-            <textarea
-                readOnly
-                value={shortInfo}
-                className="bg-main1-1 text-white p-2 rounded resize-none"
-                rows={2}
-            />
+
+            <div className="flex justify-between items-center text-sm">
+                <p className="text-gray-300">Reporter: <span className="font-medium text-white">{reporter}</span></p>
+                <p>Bounty: <span className="font-medium text-green-400">{bounty}</span></p>
+            </div>
+
+            <div className="bg-gray-700 text-gray-200 p-3 rounded">
+                <textarea
+                    readOnly
+                    value={shortInfo}
+                    className="w-full bg-transparent text-sm resize-none outline-none"
+                    rows={2}
+                />
+            </div>
         </div>
     );
 };
