@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { PartnerSearch } from '../../components';
-import { MdLeaderboard } from 'react-icons/md';
+import { IoMdBook } from "react-icons/io";
+import { LuClipboardList } from "react-icons/lu";
+import { MdPeopleOutline } from "react-icons/md";
 
 interface ProgramCardsProps {
     avt: string;
@@ -19,20 +21,20 @@ const ProgramCards: React.FC<ProgramCardsProps> = ({avt, programState, programNa
             <div className="basis-[10%] bg-white flex flex-row rounded-2xl p-[5px]">
                 <Link className={`basis-1/3 w-full flex items-center border-r-[0.1px] border-main2-1`} to={"#"}>
                     <div className="flex justify-center p-[10px] w-full">
-                        <MdLeaderboard className="fill-black size-6 mr-[5px]" />
+                        <IoMdBook className="fill-black size-6 mr-[5px]" />
                         <span>18</span>
                     </div>
                 </Link>
                 <Link className={`basis-1/3 w-full flex items-center border-r-[0.1px] border-main2-1`} to={"#"}>
                     <div className="flex justify-center p-[10px] w-full">
-                        <MdLeaderboard className="fill-black size-6 mr-[5px]" />
-                        <span>18</span>
+                        <LuClipboardList className="fill-white size-6 mr-[5px]" />
+                        <span>20</span>
                     </div>
                 </Link>
                 <Link className={`basis-1/3 w-full flex items-center`} to={"#"}>
                     <div className="flex justify-center p-[10px] w-full">
-                        <MdLeaderboard className="fill-black size-6 mr-[5px]" />
-                        <span>18</span>
+                        <MdPeopleOutline className="fill-black size-6 mr-[5px]" />
+                        <span>99</span>
                     </div>
                 </Link>
             </div>
