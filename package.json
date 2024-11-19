@@ -1,0 +1,24 @@
+{
+    "name": "ice",
+    "version": "1.0.0",
+    "description": "Bai tap lon cua nhom Imposter",
+    "private": true,
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/TonyMckes/conduit-realworld-example-app.git"
+    },
+    "workspaces": [
+      "backend",
+      "frontend"
+    ],
+    "scripts": {
+      "dev": "concurrently --names 'Node,Vite' -c 'green,blue' 'npm run dev -w backend' 'npm run dev -w frontend'",
+      "dev:fe": "npm run dev -w frontend",
+      "dev:be": "npm run dev -w backend",
+      "build": "npm run build -w frontend && npm run build -w backend",
+      "build:fe": "npm run build -w frontend",
+      "build:be": "npm run build -w backend",
+      "start": "npm run build -w frontend && npm run start -w backend",
+      "test": "vitest"
+    }
+  }
