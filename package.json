@@ -5,7 +5,7 @@
     "private": true,
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/TonyMckes/conduit-realworld-example-app.git"
+      "url": "git+https://github.com/dinh-namle/ICE-INT3306-8.git"
     },
     "workspaces": [
       "backend",
