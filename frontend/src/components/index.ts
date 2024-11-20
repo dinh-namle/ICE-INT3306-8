@@ -5,3 +5,4 @@ export {default as Sidebar} from './SideBar';
 export {default as PartnerSideBar} from './PartnerSideBar'
 export {default as PartnerSearch} from './PartnerSearch'
 export {default as Modal } from './Modal';
+export {default as ProgramsSearch} from './ProgramsSearch';
