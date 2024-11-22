@@ -18,7 +18,7 @@ const PartnerSearch: React.FC<PartnerSearchProps> = ({ searchTerm, onSearchChang
                 <div><span className="text-main1-3">Hãy để chúng tôi bảo vệ bạn</span></div>
             </div>
 
-            <div className="basis-[30%]">
+            <div className="basis-[30%] mr-[10px]">
                 <input 
                     type="text" 
                     value={searchTerm} 
