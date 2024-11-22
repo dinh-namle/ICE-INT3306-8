@@ -12,12 +12,20 @@ const overviewData = [
         bounty: '$500'
     },
     {
-        title: 'Cross-Site Scripting (XSS)',
-        date: '2024-10-15',
+        title: 'SQL Injection Vulnerability',
+        date: '2024-11-01',
         status: 'Resolved',
-        reporter: 'Bob',
-        shortInfo: 'A Cross-Site Scripting (XSS) vulnerability...',
-        bounty: '$750'
+        reporter: 'Alice',
+        shortInfo: 'An SQL injection vulnerability...',
+        bounty: '$500'
+    },
+    {
+        title: 'SQL Injection Vulnerability',
+        date: '2024-11-01',
+        status: 'Resolved',
+        reporter: 'Alice',
+        shortInfo: 'An SQL injection vulnerability...',
+        bounty: '$500'
     },
 ];
 
@@ -44,7 +52,6 @@ const Profile = () => {
 
     const handleEditToggle = () => {
         if (isEditing) {
-            console.log('Saving changes:', { userName, email, phoneNumber, webSite, about });
             setLastUpdated(new Date().toLocaleString());
         }
         setIsEditing(!isEditing);
@@ -147,7 +154,7 @@ const Profile = () => {
                     </div>
                 </div>
 
-                <div className="h-[650px] w-[800px] flex flex-col items-center basis-2/3 mr-[20px]">
+                <div className="flex flex-col items-center basis-2/3 mr-[20px]">
                     <div className="bg-main1-1 flex flex-col w-full mb-[30px]">
                         <div className="w-full bg-slate-900 h-[50px] flex items-center pl-[20px]">
                             <span className="text-main1-3">About {userName}</span>
@@ -173,12 +180,12 @@ const Profile = () => {
                         <div className="w-full bg-slate-900 h-[50px] flex items-center pl-[20px]">
                             <span className="text-main1-3">Hacktivity</span>
                         </div>
-                        <div className="w-full p-[20px] flex justify-center">
-                            <div className="W-full">
+                        <div className="w-full p-[20px] flex items-center overflow-hidden">
+                            <div className="w-full overflow-y-auto" style={{ maxHeight: '400px', scrollbarWidth: 'none' }}>
                                 {filteredOverviewData.map((item, index) => (
                                     <HacktivityItem key={index} {...item} />
                                 ))}
-                            </div>                           
+                            </div>    
                         </div>
                     </div>
 
