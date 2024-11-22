@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HacktivityItem from '../../components/HacktivityItem';
+import { Modal } from '../../components';
+import ChangePasswordModal from './ChangePasswordModal';
 
 const overviewData = [
     {
@@ -34,6 +36,9 @@ const Profile = () => {
     const handleNavigate = (path: string) => {
         navigate(path);
     };
+
+    const [openModal, setOpenModal] = useState(false)
+    const handleOpenModal = () => { setOpenModal(!openModal) }  
 
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -136,9 +141,12 @@ const Profile = () => {
                             >
                                 {isEditing ? 'Lưu thay đổi' : 'Thông tin cá nhân'}
                             </button>
-                            <button className="text-main2-1 w-[180px] h-[60px] bg-slate-800 m-[10px] text-center rounded-md">
+                            <button onClick={() => {handleOpenModal()}} className="text-main2-1 w-[180px] h-[60px] bg-slate-800 m-[10px] text-center rounded-md">
                                 Mật khẩu
                             </button>
+                            {openModal && <Modal onClose={() => {handleOpenModal()}}>
+                                <ChangePasswordModal onClose={() => {handleOpenModal()}} />
+                            </Modal>}
                         </div>
                     </div>
 
