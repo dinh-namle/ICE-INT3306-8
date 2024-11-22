@@ -1,12 +1,38 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import HacktivityItem from '../../components/HacktivityItem';
+
+const overviewData = [
+    {
+        title: 'SQL Injection Vulnerability',
+        date: '2024-11-01',
+        status: 'Resolved',
+        reporter: 'Alice',
+        shortInfo: 'An SQL injection vulnerability...',
+        bounty: '$500'
+    },
+    {
+        title: 'Cross-Site Scripting (XSS)',
+        date: '2024-10-15',
+        status: 'Resolved',
+        reporter: 'Bob',
+        shortInfo: 'A Cross-Site Scripting (XSS) vulnerability...',
+        bounty: '$750'
+    },
+];
 
 const Profile = () => {
     const navigate = useNavigate();
-
     const handleNavigate = (path: string) => {
         navigate(path);
     };
+
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const filteredOverviewData = overviewData.filter(item =>
+        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.reporter.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     const [isEditing, setIsEditing] = useState(false);
     const [userName, setUserName] = useState('CaoLePhungCP');
@@ -24,7 +50,6 @@ const Profile = () => {
         setIsEditing(!isEditing);
     };
 
-    // Render ra ô nhập liệu
     const renderInput = (
         id: string,
         value: string,
@@ -149,7 +174,11 @@ const Profile = () => {
                             <span className="text-main1-3">Hacktivity</span>
                         </div>
                         <div className="w-full p-[20px] flex justify-center">
-                            {/*  */}
+                            <div className="W-full">
+                                {filteredOverviewData.map((item, index) => (
+                                    <HacktivityItem key={index} {...item} />
+                                ))}
+                            </div>                           
                         </div>
                     </div>
 
