@@ -9,6 +9,7 @@ import PartnerLayout from './layouts/PartnerLayout';
 import AccountRegister from './pages/Auth/AccountRegister';
 import ResearcherRegister from './pages/Auth/ResearcherRegister';
 import PartnerRegister from './pages/Auth/PartnerRegister';
+import PartnerAccount from './pages/Partner/PartnerAccount';
 export default function App() {
   return (
     <div>
@@ -47,6 +48,7 @@ export default function App() {
           <Route path='/partner/overview' element={<PartnerOverview />}/>
           <Route path='/partner/paymenthistory' element={<PaymentHistory />}/>
           <Route path='/partner/programs' element={<PartnerPrograms />}/>
+          <Route path='/partner/account' element={<PartnerAccount />}/>
         </Route>
 
       </Routes>
