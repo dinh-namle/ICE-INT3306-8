@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css'
-import { Admin, AdminNotification, Home, Programs, LeaderBoard, SubmitReport, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings, Login, PartnerInbox, PartnerOverview, ResearchRegister, Reward, Hacktivity, PaymentHistory, PartnerPrograms } from './pages';
+import { Admin, AdminNotification, Home, Programs, LeaderBoard, SubmitReport, Profile, AdminPrograms, AdminAccounts, AdminReports, AdminSettings, Login, PartnerInbox, PartnerOverview, ResearchRegister, Reward, Hacktivity, PaymentHistory, PartnerPrograms, PartnerReports, PaymentAdd } from './pages';
 import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout';
 import HomeLayout from './layouts/HomeLayout';
@@ -41,6 +41,7 @@ export default function App() {
           <Route path='/SubmitReport' element={<SubmitReport />} />
           <Route path='/Reward' element={<Reward />} />
           <Route path='/Hacktivity' element={<Hacktivity />} />
+          <Route path='/PaymentAdd' element={<PaymentAdd />} />
         </Route>
 
         <Route element={<PartnerLayout />}>
@@ -48,7 +49,6 @@ export default function App() {
           <Route path='/partner/overview' element={<PartnerOverview />}/>
           <Route path='/partner/paymenthistory' element={<PaymentHistory />}/>
           <Route path='/partner/programs' element={<PartnerPrograms />}/>
-          <Route path='/partner/account' element={<PartnerAccount />}/>
         </Route>
 
       </Routes>

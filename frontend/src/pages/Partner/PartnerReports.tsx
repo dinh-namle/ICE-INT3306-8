@@ -2,27 +2,27 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { PartnerCreateList, PartnerSearch } from '../../components';
 import { CgSortAz } from 'react-icons/cg';
-import { GoDownload, GoPencil } from 'react-icons/go';
-import { RiDeleteBin6Line } from 'react-icons/ri';
+import { MdDownloadDone, MdOutlineCancel } from 'react-icons/md';
+import { IoMdSend } from 'react-icons/io';
 
-const PartnerPrograms: React.FC = () => {
+const PartnerReports: React.FC = () => {
     const navigate = useNavigate();
     const [searchTerm1, setSearchTerm1] = useState<string>('');
     const [searchTerm2, setSearchTerm2] = useState<string>('');
 
-    const handleDownload = () => {};
-    const handleDelete = () => {};
-    const handleUpdate = () => {};
+    const handleSend = () => {};
+    const handleDone = () => {};
+    const handleCancel = () => {};
 
     const data = [
-        ['abccc', 'Public', '55$', '11/11/11'],
-        ['xyz', 'Private', '75$', '12/12/12'],
+        ['abc', 'XSS', 'Program1', 'uet.vnu.edu.vn', '11/11/11'],
+        ['def', 'XSS', 'Program2', 'uet.vnu.edu.vn', '12/12/12'],
     ];
 
     const buttons = [
-        { handleAction: handleDownload, icon: <GoDownload className="fill-white size-6" /> },
-        { handleAction: handleUpdate, icon: <GoPencil className="fill-white size-6" /> },
-        { handleAction: handleDelete, icon: <RiDeleteBin6Line className="fill-white size-6" /> },
+        { handleAction: handleSend, icon: <IoMdSend className="fill-white size-6" /> },
+        { handleAction: handleDone, icon: <MdDownloadDone className="fill-white size-6" /> },
+        { handleAction: handleCancel, icon: <MdOutlineCancel className="fill-white size-6" /> },
     ];
 
     const handleSearchChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,16 +77,14 @@ const PartnerPrograms: React.FC = () => {
                     </div>
                 </div>
                 <div className="basis-[50%] mr-[10px] flex justify-end items-center">
-                    <button onClick={handleSort} className="text-white bg-main2-2 rounded-md p-[10px]">
-                        Thêm programs
-                    </button>
+                    
                 </div>
             </div>
 
             <div className="basis-[80%] w-full bg-main1-1 p-[20px]">
                 <PartnerCreateList 
-                    showCheckbox={true}
-                    headers={["Tên programs", "Loại", "Thưởng", "Thời gian"]}
+                    showCheckbox={false}
+                    headers={["Researcher", "Loại", "Programs", "Mục tiêu", "Thời gian"]}
                     data={data}
                     buttons={buttons}
                 />
@@ -95,4 +93,4 @@ const PartnerPrograms: React.FC = () => {
     );
 }
 
-export default PartnerPrograms;
+export default PartnerReports;
