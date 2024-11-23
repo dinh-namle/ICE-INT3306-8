@@ -49,6 +49,7 @@ export default function App() {
           <Route path='/partner/overview' element={<PartnerOverview />}/>
           <Route path='/partner/paymenthistory' element={<PaymentHistory />}/>
           <Route path='/partner/programs' element={<PartnerPrograms />}/>
+          <Route path='/partner/account' element={<PartnerAccount />}/>
         </Route>
 
       </Routes>
