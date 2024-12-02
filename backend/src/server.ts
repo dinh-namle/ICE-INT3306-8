@@ -1,12 +1,24 @@
-import express, { Application, Request, Response } from 'express';
+import "reflect-metadata"; // Import bắt buộc cho TypeORM
+import { AppDataSource } from "./data-source"; // Kết nối TypeORM
+import app from "./app";
 
-const app: Application = express();
-const port: number = 3000;
+const PORT = process.env.PORT || 3000; // Port của server
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello, World!');
-});
+// Khởi động server
+const startServer = async () => {
+  try {
+    // Kết nối cơ sở dữ liệu
+    await AppDataSource.initialize();
+    console.log("📦 Database connected successfully!");
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+    // Lắng nghe trên cổng
+    app.listen(PORT, () => {
+      console.log(`🚀 Server is running on http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error("❌ Error starting server:", error);
+    process.exit(1); // Thoát nếu có lỗi
+  }
+};
+
+startServer();
