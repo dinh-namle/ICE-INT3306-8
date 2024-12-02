@@ -1,5 +1,6 @@
 import { InputForm } from './InputForm';
-import { FaMagnifyingGlass } from "react-icons/fa6";
+// import { FaMagnifyingGlass } from "react-icons/fa6";
+import ProgramsDropdown from './ProgramsDropdown';
 
 const ProgramsSearch:React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const ProgramsSearch:React.FC = () => {
 
       <div className="flex flex-col basis-2/12 space-y-2">
         <div className="text-white font-medium">Programs type</div>
-        <input type="text" />
+        <ProgramsDropdown />
       </div>
 
       <div className="flex flex-col basis-1/12 space-y-2">
