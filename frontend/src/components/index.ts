@@ -6,4 +6,3 @@ export {default as PartnerSideBar} from './PartnerSideBar'
 export {default as PartnerSearch} from './PartnerSearch'
 export {default as Modal } from './Modal';
 export {default as ProgramsSearch} from './ProgramsSearch';
-export {default as ProgramsDropdown} from './ProgramsDropdown';

@@ -1,12 +1,51 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import HacktivityItem from '../../components/HacktivityItem';
+import { Modal } from '../../components';
+import ChangePasswordModal from './ChangePasswordModal';
+
+const overviewData = [
+    {
+        title: 'SQL Injection Vulnerability',
+        date: '2024-11-01',
+        status: 'Resolved',
+        reporter: 'Alice',
+        shortInfo: 'An SQL injection vulnerability...',
+        bounty: '$500'
+    },
+    {
+        title: 'SQL Injection Vulnerability',
+        date: '2024-11-01',
+        status: 'Resolved',
+        reporter: 'Alice',
+        shortInfo: 'An SQL injection vulnerability...',
+        bounty: '$500'
+    },
+    {
+        title: 'SQL Injection Vulnerability',
+        date: '2024-11-01',
+        status: 'Resolved',
+        reporter: 'Alice',
+        shortInfo: 'An SQL injection vulnerability...',
+        bounty: '$500'
+    },
+];
 
 const Profile = () => {
     const navigate = useNavigate();
-
     const handleNavigate = (path: string) => {
         navigate(path);
     };
+
+    const [openModal, setOpenModal] = useState(false)
+    const handleOpenModal = () => { setOpenModal(!openModal) }  
+
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const filteredOverviewData = overviewData.filter(item =>
+        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.reporter.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     const [isEditing, setIsEditing] = useState(false);
     const [userName, setUserName] = useState('CaoLePhungCP');
@@ -18,13 +57,11 @@ const Profile = () => {
 
     const handleEditToggle = () => {
         if (isEditing) {
-            console.log('Saving changes:', { userName, email, phoneNumber, webSite, about });
             setLastUpdated(new Date().toLocaleString());
         }
         setIsEditing(!isEditing);
     };
 
-    // Render ra ô nhập liệu
     const renderInput = (
         id: string,
         value: string,
@@ -104,9 +141,12 @@ const Profile = () => {
                             >
                                 {isEditing ? 'Lưu thay đổi' : 'Thông tin cá nhân'}
                             </button>
-                            <button className="text-main2-1 w-[180px] h-[60px] bg-slate-800 m-[10px] text-center rounded-md">
+                            <button onClick={() => {handleOpenModal()}} className="text-main2-1 w-[180px] h-[60px] bg-slate-800 m-[10px] text-center rounded-md">
                                 Mật khẩu
                             </button>
+                            {openModal && <Modal onClose={() => {handleOpenModal()}}>
+                                <ChangePasswordModal onClose={() => {handleOpenModal()}} />
+                            </Modal>}
                         </div>
                     </div>
 
@@ -122,7 +162,7 @@ const Profile = () => {
                     </div>
                 </div>
 
-                <div className="h-[650px] w-[800px] flex flex-col items-center basis-2/3 mr-[20px]">
+                <div className="flex flex-col items-center basis-2/3 mr-[20px]">
                     <div className="bg-main1-1 flex flex-col w-full mb-[30px]">
                         <div className="w-full bg-slate-900 h-[50px] flex items-center pl-[20px]">
                             <span className="text-main1-3">About {userName}</span>
@@ -148,8 +188,12 @@ const Profile = () => {
                         <div className="w-full bg-slate-900 h-[50px] flex items-center pl-[20px]">
                             <span className="text-main1-3">Hacktivity</span>
                         </div>
-                        <div className="w-full p-[20px] flex justify-center">
-                            {/*  */}
+                        <div className="w-full p-[20px] flex items-center overflow-hidden">
+                            <div className="w-full overflow-y-auto" style={{ maxHeight: '400px', scrollbarWidth: 'none' }}>
+                                {filteredOverviewData.map((item, index) => (
+                                    <HacktivityItem key={index} {...item} />
+                                ))}
+                            </div>    
                         </div>
                     </div>
 

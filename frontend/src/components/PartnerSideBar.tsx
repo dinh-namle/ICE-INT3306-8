@@ -47,7 +47,7 @@ const PartnerSideBar: React.FC = () => {
           <div className="basis-[20%] flex justify-center"><span className="bg-main2-2 text-white text-center rounded-full w-[30px]">13</span></div>
         </div>
       </Link>
-      <Link className={`py-4 ${location.pathname === "/partner/accout" ? "bg-main2-2" : "bg-main1-1"} w-[80%] rounded-lg flex flex-col items-center`} to={"#"}>
+      <Link className={`py-4 ${location.pathname === "/partner/account" ? "bg-main2-2" : "bg-main1-1"} w-[80%] rounded-lg flex flex-col items-center`} to={"#"}>
         <div className="flex flex-row w-full">
           <div className="basis-[30%] flex justify-center"><MdOutlineAccountCircle className="fill-white size-6" /></div>
           <div className="basis-[50%] flex justify-start"><span className="text-white">Account</span></div>
