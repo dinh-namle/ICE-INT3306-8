@@ -16,6 +16,7 @@
     "argparse": "^2.0.1",
     "array-flatten": "^1.1.1",
     "autoprefixer": "^10.4.20",
+    "axios": "^1.7.9",
     "balanced-match": "^1.0.2",
     "basic-auth": "^2.0.1",
     "binary-extensions": "^2.3.0",
