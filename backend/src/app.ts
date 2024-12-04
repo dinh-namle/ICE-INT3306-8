@@ -5,6 +5,7 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import { errorHandler } from "./middlewares/errorHandler";
 import userRoutes from "./routes/userRoutes"; // Import các route
+import payoutMethodRoutes from "./routes/payoutMethodRoutes";
 
 const app: Application = express();
 
@@ -16,6 +17,7 @@ app.use(bodyParser.json()); // Xử lý request body dạng JSON
 
 // Routes
 app.use("/api/users", userRoutes); // Route liên quan đến users
+app.use("/api/payout-methods", payoutMethodRoutes);
 
 // Catch-all Error Handler
 app.use(errorHandler);
