@@ -1,14 +1,17 @@
 import { ProgramsSearch } from "../../components"
 
 const Programs = () => {
+
+  const handlebutton = () => {}
+
   return (
     <div className="bg-main1-2 h-dvh text-white flex flex-col">
       <div className="flex bg-main1-1 text-main2-1 p-8 w-full font-bold text-3xl items-center">Programs</div>
 
       <div className="flex flex-row w-full bg-main1-1 pl-8 pb-2 space-x-8">
-        <button className="font-medium" onClick={null}>All programs</button>
-        <button className="font-medium" onClick={null}>Public programs</button>
-        <button className="font-medium" onClick={null}>Private programs</button>
+        <button className="font-medium" onClick={handlebutton}>All programs</button>
+        <button className="font-medium" onClick={handlebutton}>Public programs</button>
+        <button className="font-medium" onClick={handlebutton}>Private programs</button>
       </div>
 
       <div className="bg-main1-2 flex flex-col pl-8 py-8 w-full justify-center">
