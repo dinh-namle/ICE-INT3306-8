@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { PayoutMethod } from "../entity/PayoutMethod";
 import { User } from "../entity/User";
+import { PaymentHistory } from "../entity/PaymentHistory";
 
 // Add a payout method for a user
 export const addPayoutMethod = async (req: Request, res: Response): Promise<void> => {
@@ -26,6 +27,25 @@ export const addPayoutMethod = async (req: Request, res: Response): Promise<void
         await payoutMethodRepository.save(payoutMethod);
 
         res.status(201).json({ message: "Payout method added successfully", payoutMethod });
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error });
+    }
+};
+
+// Get payment history for a user
+export const getPaymentHistory = async (req: Request, res: Response): Promise<void> => {
+    const userId = req.params.userId;
+
+    if (!userId || isNaN(Number(userId))) {
+        res.status(400).json({ message: "Invalid user ID" });
+        return;
+    }
+
+    const paymentHistoryRepository = AppDataSource.getRepository(PaymentHistory);
+
+    try {
+        const paymentHistory = await paymentHistoryRepository.find({ where: { user: { id: Number(userId) } } });
+        res.json(paymentHistory);
     } catch (error) {
         res.status(500).json({ message: "Server error", error });
     }

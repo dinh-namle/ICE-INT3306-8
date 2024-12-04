@@ -4,8 +4,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import { errorHandler } from "./middlewares/errorHandler";
-import userRoutes from "./routes/userRoutes"; // Import các route
-import payoutMethodRoutes from "./routes/payoutMethodRoutes";
+import userRoutes from "./routes/userRoutes"; 
+import paymentRoutes from "./routes/paymentRoutes"; //
 
 const app: Application = express();
 
@@ -17,7 +17,7 @@ app.use(bodyParser.json()); // Xử lý request body dạng JSON
 
 // Routes
 app.use("/api/users", userRoutes); // Route liên quan đến users
-app.use("/api/payout-methods", payoutMethodRoutes);
+app.use("/api/payments", paymentRoutes);
 
 // Catch-all Error Handler
 app.use(errorHandler);
