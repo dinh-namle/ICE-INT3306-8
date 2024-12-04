@@ -3,14 +3,14 @@ import { AppDataSource } from "../data-source";
 import { User } from "../entity/User";
 
 // Lấy danh sách user
-export const get_list = async (req: Request, res: Response) => {
+export const user_get_list = async (req: Request, res: Response) => {
   const userRepository = AppDataSource.getRepository(User);
   const users = await userRepository.find();
   res.json(users);
 };
 
 // Lấy thông tin user theo ID
-export const get_info = async (req: Request, res: Response) => {
+export const user_get_info = async (req: Request, res: Response) => {
   const id = req.params.id;
 
   if (!id || isNaN(Number(id))) {
@@ -22,7 +22,7 @@ export const get_info = async (req: Request, res: Response) => {
   try {
       const user = await userRepository.findOneBy({ id: Number(id) });
       if (!user) {
-          res.status(404).json({ message: "User not found" });
+        res.status(404).json({ message: "User not found" });
       }
       res.json(user);
   } catch (error) {
@@ -30,8 +30,40 @@ export const get_info = async (req: Request, res: Response) => {
   }
 };
 
+// Cập nhật thông tin user
+export const user_update = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const { username, email, phoneNumber, webSite } = req.body; 
+
+  if (!id || isNaN(Number(id))) {
+      res.status(400).json({ message: "Invalid user ID" });
+  }
+
+  const userRepository = AppDataSource.getRepository(User);
+
+  try {
+      // Tìm user theo ID
+      const user = await userRepository.findOneBy({ id: Number(id) });
+
+      if (!user) {
+          res.status(404).json({ message: "User not found" });
+      }
+
+      user.username = username || user.username;
+      user.email = email || user.email;
+      user.phoneNumber = phoneNumber || user.phoneNumber;
+      user.webSite = webSite || user.webSite;
+
+      await userRepository.save(user);
+
+      res.json({ message: "User updated successfully", user });
+  } catch (error) {
+      res.status(500).json({ message: "Server error", error });
+  }
+};
+
 // Tạo user mới
-export const createUser = async (req: Request, res: Response) => {
+export const user_create = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -43,4 +75,34 @@ export const createUser = async (req: Request, res: Response) => {
   await userRepository.save(newUser);
 
   res.status(201).json({ message: "User created successfully", user: newUser });
+};
+
+// Xóa user
+export const user_delete = async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  // Kiểm tra tính hợp lệ của ID
+  if (!id || isNaN(Number(id))) {
+      res.status(400).json({ message: "Invalid user ID" });
+  }
+
+  const userRepository = AppDataSource.getRepository(User);
+
+  try {
+      // Tìm user theo ID
+      const user = await userRepository.findOneBy({ id: Number(id) });
+
+      // Kiểm tra xem người dùng có tồn tại không
+      if (!user) {
+          res.status(404).json({ message: "User not found" });
+      }
+
+      // Xóa người dùng
+      await userRepository.remove(user); 
+
+      res.json({ message: "User deleted successfully" });
+  } catch (error) {
+      console.error("Error deleting user:", error);
+      res.status(500).json({ message: "Server error", error });
+  }
 };
