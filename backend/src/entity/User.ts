@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { PayoutMethod } from "./PayoutMethod";
+import { PayoutMethod } from "./PayoutMethod"; 
+import { PaymentHistory } from "./PaymentHistory"
 @Entity() // Decorator to mark the class as an entity
 export class User {
     @PrimaryGeneratedColumn() // Primary key column with auto-increment
@@ -18,5 +19,8 @@ export class User {
     status!: string;
 
     @OneToMany(() => PayoutMethod, payoutMethod => payoutMethod.user)
-    payoutMethods!: PayoutMethod[];
+    payoutMethods!: PayoutMethod[]; 
+    
+    @OneToMany(() => PaymentHistory, paymentHistory => paymentHistory.user) 
+    paymentHistory!: PaymentHistory[];
 }
