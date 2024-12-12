@@ -1,9 +1,13 @@
 import { DataSource } from "typeorm";
+import dotenv from "dotenv";
+
+// Load thông tin từ file .env
+dotenv.config();
 
 export const AppDataSource = new DataSource({
   type: "mysql", // Loại cơ sở dữ liệu
   host: process.env.DATABASE_HOST,
-  port: process.env.DATABASE_PORT ? parseInt(process.env.DATABASE_PORT, 10) : undefined,
+  port: parseInt(process.env.DATABASE_PORT || '3306'),
   username: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,

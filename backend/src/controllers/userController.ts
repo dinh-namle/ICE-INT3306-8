@@ -56,11 +56,11 @@ export const user_update = async (req: Request, res: Response): Promise<void> =>
             return;
         }
 
-        user.username = username || user.username;
-        user.email = email || user.email;
-        user.phoneNumber = phoneNumber || user.phoneNumber;
-        user.webSite = webSite || user.webSite;
-        user.biography = biography || user.biography;
+        user.username = username ?? user.username;
+        user.email = email ?? user.email;
+        user.phoneNumber = phoneNumber ?? user.phoneNumber;
+        user.webSite = webSite ?? user.webSite;
+        user.biography = biography ?? user.biography;
 
         await userRepository.save(user);
 
@@ -72,7 +72,7 @@ export const user_update = async (req: Request, res: Response): Promise<void> =>
 
 // Tạo người dùng mới
 export const user_create = async (req: Request, res: Response): Promise<void> => {
-    const { username, email, password } = req.body;
+    const { username, email, password, phoneNumber, webSite, biography} = req.body;
 
     if (!username || !email || !password) {
         res.status(400).json({ message: "Missing required fields" });
@@ -82,12 +82,11 @@ export const user_create = async (req: Request, res: Response): Promise<void> =>
     const userRepository = AppDataSource.getRepository(User);
 
     try {
-        const newUser = userRepository.create({ username, email, password });
+        const newUser = userRepository.create({ username, email, password, phoneNumber, webSite, biography });
         await userRepository.save(newUser);
 
         res.status(201).json({
             message: "User created successfully",
-            data: { id: newUser.id, username: newUser.username, email: newUser.email }
         });
     } catch (error) {
         res.status(500).json({ message: "Server error", error });
@@ -125,7 +124,7 @@ export const user_delete = async (req: Request, res: Response): Promise<void> =>
 export const user_changePassword = async (req: Request, res: Response): Promise<void> => {
   const { id, currentPassword, newPassword } = req.body;
 
-  if (!id || !currentPassword || !newPassword) {
+  if ( !currentPassword || !newPassword) {
       res.status(400).json({ message: "Missing required fields" });
       return;
   }
