@@ -4,7 +4,7 @@ const Home = () => {
   const navigate = useNavigate()
 
   const handleNavigate = (path: string) => {
-    navigate(path) //
+    navigate(path)
   }
 
   return (
@@ -22,13 +22,13 @@ const Home = () => {
         </p>
         <div className='my-4 space-x-16'>
           <button
-            onClick={() => handleNavigate('#')}
+            onClick={() => handleNavigate('/register')}
             className='transition ease-in-out duration-100 hover:scale-110 text-main1-1 bg-main2-1 text-base font-semibold py-[10px] px-[20px] mx-1 rounded-md'
           >
             Tham gia ngay
           </button>
           <button
-            onClick={() => handleNavigate('#')}
+            onClick={() => handleNavigate('/login')}
             className='transition ease-in-out duration-100 hover:scale-110 text-main1-3 bg-main1-2 text-base font-semibold py-[10px] px-[20px] mx-1 rounded-md'
           >
             Đã là thành viên?
@@ -47,7 +47,7 @@ const Home = () => {
       </div>
 
       <div
-        className='bg-local h-svh justify-center items-end flex flex-col pr-32 pt-[80px]'
+        className='bg-local bg-cover h-svh justify-center items-end flex flex-col pr-32 pt-[80px]'
         style={{ backgroundImage: "url('/back2.jpg')" }}
       > 
         <p className='text-white text-7xl font-sans font-extrabold flex flex-col my-4 space-y-4 items-end'>

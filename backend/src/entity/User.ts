@@ -1,6 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { PayoutMethod } from "./PayoutMethod"; 
 import { PaymentHistory } from "./PaymentHistory"
+import { Report } from "./Report"
+import { Program } from "./Program"
 @Entity() // Decorator to mark the class as an entity
 export class User {
     @PrimaryGeneratedColumn() // Primary key column with auto-increment
@@ -24,12 +26,30 @@ export class User {
     @Column({ nullable: true }) // Có thể null
     biography!: string;
 
-    @Column({ default: "active" }) // Giá trị mặc định
-    status!: string;
+    @Column()
+    role!: string;
+
+    @Column()
+    birthDate!: Date;
+
+    @Column()
+    createdAt!: Date;
+
+    @Column()
+    updatedAt!: Date;
+
+    @Column({ nullable: true }) // Có thể null
+    avatar!: string;
 
     @OneToMany(() => PayoutMethod, payoutMethod => payoutMethod.user)
     payoutMethods!: PayoutMethod[]; 
     
     @OneToMany(() => PaymentHistory, paymentHistory => paymentHistory.user) 
     paymentHistory!: PaymentHistory[];
+
+    @OneToMany(() => Report, report => report.user)
+    reports!: Report[];
+
+    @OneToMany(() => Program, program => program.user)
+    programs!: Program[];
 }
