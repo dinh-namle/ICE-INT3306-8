@@ -32,10 +32,10 @@ const overviewData = [
 ];
 
 const Profile = () => {
-    const navigate = useNavigate();
-    const handleNavigate = (path: string) => {
-        navigate(path);
-    };
+    // const navigate = useNavigate();
+    // const handleNavigate = (path: string) => {
+    //     navigate(path);
+    // };
 
     const [openModal, setOpenModal] = useState(false)
     const handleOpenModal = () => { setOpenModal(!openModal) }  
