@@ -2,7 +2,7 @@ import "reflect-metadata"; // Import bắt buộc cho TypeORM
 import { AppDataSource } from "./data-source"; // Kết nối TypeORM
 import app from "./app";
 
-const PORT = process.env.PORT || 3000; // Port của server
+const PORT = process.env.PORT || 3001; // Port của server
 
 // Khởi động server
 const startServer = async () => {
