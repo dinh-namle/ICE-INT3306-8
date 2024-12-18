@@ -14,28 +14,28 @@ export class User {
     @Column()
     password!: string;
 
-    @Column({ nullable: true }) // Có thể null
+    @Column({ nullable: true }) 
     email!: string;
 
-    @Column({ nullable: true }) // Có thể null
+    @Column({ nullable: true })
     phoneNumber!: string;
 
-    @Column({ nullable: true }) // Có thể null
+    @Column({ nullable: true }) 
     webSite!: string;
 
-    @Column({ nullable: true }) // Có thể null
+    @Column({ nullable: true }) 
     biography!: string;
 
-    @Column()
+    @Column({ nullable: true })
     role!: string;
 
-    @Column()
+    @Column({ nullable: true })
     birthDate!: Date;
 
-    @Column()
+    @Column({ nullable: true })
     createdAt!: Date;
 
-    @Column()
+    @Column({ nullable: true })
     updatedAt!: Date;
 
     @Column({ nullable: true }) // Có thể null

@@ -10,7 +10,7 @@ import researcherRoutes from "./routes/researcherRoutes"; // Routes dành cho Re
 const app = express();
 
 // Khai báo PORT một lần duy nhất
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
