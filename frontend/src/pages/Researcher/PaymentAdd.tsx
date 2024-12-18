@@ -2,6 +2,34 @@ import React, { useState } from 'react';
 import SelectPayoutMethodPopup from '../../components/SelectPayoutMethodPopup';
 import PayPalFormPopup from '../../components/PayPalFormPopup';
 import BankAccountFormPopup from '../../components/BankAccountFormPopup';
+import axios from 'axios';
+
+// Add a payout method
+export const addPayoutMethod = async (userId: number, type: string, details: string) => {
+  try {
+    const response = await axios.post('/api/payments/add', {
+      userId,
+      type,
+      details,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error adding payout method:', error);
+    throw error;
+  }
+};
+
+// Remove a payout method
+export const removePayoutMethod = async (payoutMethodId: number) => {
+  try {
+    const response = await axios.delete(`/api/payments/remove/${payoutMethodId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error removing payout method:', error);
+    throw error;
+  }
+};
+
 
 const PaymentAdd: React.FC = () => {
   const [showSelectPopup, setShowSelectPopup] = useState(false);
@@ -30,8 +58,36 @@ const PaymentAdd: React.FC = () => {
   };
 
   const handleNext = () => {
-    // Implement the logic for the next step
     alert('Proceed to the next step');
+  };
+
+  const handleAddPayPal = async (userId: number, email: string) => {
+    try {
+      await addPayoutMethod(userId, 'PayPal', email);
+      alert('PayPal added successfully');
+      closePayPalForm();
+    } catch (error) {
+      alert('Error adding PayPal');
+    }
+  };
+
+  const handleAddBankAccount = async (userId: number, bankDetails: string) => {
+    try {
+      await addPayoutMethod(userId, 'Bank', bankDetails);
+      alert('Bank account added successfully');
+      closeBankForm();
+    } catch (error) {
+      alert('Error adding bank account');
+    }
+  };
+
+  const handleRemovePayoutMethod = async (payoutMethodId: number) => {
+    try {
+      await removePayoutMethod(payoutMethodId);
+      alert('Payout method removed successfully');
+    } catch (error) {
+      alert('Error removing payout method');
+    }
   };
 
   return (
@@ -77,7 +133,7 @@ const PaymentAdd: React.FC = () => {
             <h2 className="text-xl font-semibold mb-4 text-white">Payout Methods</h2>
             <div className="flex justify-between items-center mb-4">
               <span className="text-white">Default Payout Method: PayPal (example@example.com)</span>
-              <button className="bg-sub-1 text-white py-2 px-4 rounded-lg hover:bg-red-700">Remove</button>
+              <button className="bg-sub-1 text-white py-2 px-4 rounded-lg hover:bg-red-700" onClick={() => handleRemovePayoutMethod(1)}>Remove</button>
             </div>
             <button
               className="bg-main2-1 text-main1-1 py-2 px-4 rounded-lg hover:bg-main2-2"
@@ -99,13 +155,14 @@ const PaymentAdd: React.FC = () => {
           <PayPalFormPopup
             onClose={closePayPalForm}
             onBack={handleBack}
+            onAddPayPal={handleAddPayPal} // Pass the handler
           />
         )}
         {showBankForm && (
           <BankAccountFormPopup
             onClose={closeBankForm}
             onBack={handleBack}
-            onNext={handleNext}
+            onNext={handleAddBankAccount} // Pass the handler
           />
         )}
       </div>
