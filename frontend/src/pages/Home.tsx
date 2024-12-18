@@ -59,7 +59,7 @@ const Home = () => {
         </p>
         <div className='my-4 space-x-16'>
           <button
-            onClick={() => handleNavigate('#')}
+            onClick={() => handleNavigate('/register')}
             className='transition ease-in-out duration-100 hover:scale-110 text-main1-1 bg-main2-1 text-base font-semibold py-[10px] px-[20px] mx-1 rounded-md'
           >
             Trở thành đối tác của chúng tôi

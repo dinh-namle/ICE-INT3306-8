@@ -1,7 +1,5 @@
 import { AdminTab, AdminTitle, Table } from '../../components'
 
-const needHeader = false
-const columns = ["Status","Type", "Message", "Time"];
 const data = [
   { Status: "1", Type: "Program", Message: "Yêu cầu tạo mới từ HackTheBox", Time: "1 ngày trước" },
   { Status: "1", Type: "Program", Message: "Yêu cầu tạo mới từ HackTheBox", Time: "2 ngày trước" },
@@ -20,7 +18,7 @@ const AdminNotification = () => {
     </div>
 
     <div className='w-full h-full '>
-    <Table needHeader={needHeader} columns={columns} data={data} />
+    <Table data={data} />
     </div>
   </div>
   )

@@ -4,12 +4,16 @@ import { FaFilter, FaMagnifyingGlass } from 'react-icons/fa6'
 import CreateAccountModal from './CreateAccountModal'
 import  { getUserList } from '../../services/userService'
 
-// const needHeader = false
-// const columns = ['Status', 'Type', 'Message', 'Time', 'Status', 'Type', 'Message', 'Time']
-
 const AdminAccounts = () => {
 
   const [openModal, setOpenModal] = useState(false)
+
+  const [formSubmit, setFormSubmit] = useState(false)
+
+  const handleFormSubmit = () => { 
+    window.location.reload();
+    setFormSubmit(!formSubmit); 
+  }
 
   const [data, setData] = useState([])
 
@@ -27,7 +31,6 @@ const AdminAccounts = () => {
   }, []);
 
   console.log(data);
-  // const  
 
   const handleOpenModal = () => { setOpenModal(!openModal) }
 
@@ -62,13 +65,10 @@ const AdminAccounts = () => {
       </div>
 
       {openModal && <Modal onClose={() => {handleOpenModal()}}>
-        <CreateAccountModal onClose={() => {handleOpenModal()}} />
+        <CreateAccountModal onSubmit={() => handleFormSubmit()} onClose={() => {handleOpenModal()}} />
       </Modal>}
     </div>
   )
 }
 export default AdminAccounts
-function userEffect(arg0: () => void, arg1: never[]) {
-  throw new Error('Function not implemented.')
-}
 
