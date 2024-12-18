@@ -36,7 +36,7 @@ export default function App() {
 
         <Route element={<MainLayout />}>
           < Route path='/programs' element={<Programs />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile/:id' element={<Profile />} />
           <Route path='/leaderboard' element={<LeaderBoard />} />
           <Route path='/SubmitReport' element={<SubmitReport />} />
           <Route path='/Reward' element={<Reward />} />
