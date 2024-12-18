@@ -1,4 +1,4 @@
-import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6"
+// import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6"
 import { ProgramCard, ProgramsSearch } from "../../components"
 
 const Programs = () => {

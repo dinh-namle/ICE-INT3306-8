@@ -1,25 +1,25 @@
 interface TableProps {
-  columns?: string[]
-  data: { [key: string]: any }[]
-  needHeader: boolean
+  data: { [key: string]: string }[]
 }
 
-const Table: React.FC<TableProps> = ({ columns, data,needHeader }) => {
+const Table: React.FC<TableProps> = ({  data }) => {
+  const columns = Object.keys(data[0] || {});
+
   return (
     <div className='bg-main1-2 text-white mx-8 table-auto'>
       <table className="table-auto w-full">
-        {needHeader && (<thead className="">
-          <tr className="text-center">
-            {(columns || []).map((column, index) => (
-              <th className="px-8 py-2" key={index}>{column}</th>
+        <thead>
+          <tr>
+            {columns.map((column, index) => (
+              <th className="text-center px-4 py-4" key={index}>{column}</th>
             ))}
           </tr>
-        </thead>)}
+        </thead>
         <tbody>
-          {data.map((row, index) => (
-            <tr key={index}>
-              {(columns || []).map((column, index) => (
-                <td className="text-center px-4 py-4" key={index}>{row[column]}</td>
+          {data.map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              {columns.map((column, colIndex) => (
+                <td className="text-center px-4 py-4" key={`${rowIndex}-${colIndex}`}>{row[column]}</td>
               ))}
             </tr>
           ))}

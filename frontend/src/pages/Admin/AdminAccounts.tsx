@@ -1,19 +1,33 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AdminTitle, Modal, Table } from '../../components'
 import { FaFilter, FaMagnifyingGlass } from 'react-icons/fa6'
 import CreateAccountModal from './CreateAccountModal'
+import  { getUserList } from '../../services/userService'
 
-const needHeader = false
-const columns = ['Status', 'Type', 'Message', 'Time']
-const data = [
-  { Status: '1', Type: 'Program', Message: 'Yêu cầu tạo mới từ HackTheBox', Time: '1 ngày trước' },
-  { Status: '1', Type: 'Program', Message: 'Yêu cầu tạo mới từ HackTheBox', Time: '2 ngày trước' },
-  { Status: '1', Type: 'Report', Message: 'Yêu cầu tạo mới từ HackTheBox', Time: '3 ngày trước' }
-]
+// const needHeader = false
+// const columns = ['Status', 'Type', 'Message', 'Time', 'Status', 'Type', 'Message', 'Time']
 
 const AdminAccounts = () => {
 
   const [openModal, setOpenModal] = useState(false)
+
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getUserList();
+        setData(response.data.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(data);
+  // const  
 
   const handleOpenModal = () => { setOpenModal(!openModal) }
 
@@ -44,7 +58,7 @@ const AdminAccounts = () => {
       </div>
 
       <div className='w-full h-full '>
-        <Table needHeader={needHeader} columns={columns} data={data} />
+        <Table data={data} />
       </div>
 
       {openModal && <Modal onClose={() => {handleOpenModal()}}>
@@ -54,3 +68,7 @@ const AdminAccounts = () => {
   )
 }
 export default AdminAccounts
+function userEffect(arg0: () => void, arg1: never[]) {
+  throw new Error('Function not implemented.')
+}
+
