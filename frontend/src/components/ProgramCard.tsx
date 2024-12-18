@@ -1,6 +1,6 @@
 import { FaBug, FaFaceSmile, FaPeopleGroup } from "react-icons/fa6";
 
-const ProgramCard = () => {
+const ProgramCard: React.FC<{}> = () => {
   return (
     <div className="flex flex-col w-[300px] rounded-lg  bg-main1-1">
       <div className="flex flex-row w-full h-12 mx-6 my-2 items-center justify-start">

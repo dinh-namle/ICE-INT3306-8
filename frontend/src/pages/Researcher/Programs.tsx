@@ -26,34 +26,16 @@ const Programs = () => {
 
       <div className="flex flex-col mx-8 my-4">
         <div className="font-sans text-lg font-semibold">Campaigns & top-paying programs</div>
-        <div className="flex flex-row items-center my-2 justify-around scrollbar-hide overflow-x-scroll scroll-x-auto">
-          <FaCircleArrowLeft className="size-6 cursor-pointer"/>
+        <div className="flex flex-row items-center my-2 space-x-5 scrollbar-hide overflow-x-scroll scroll-x-auto">
+          {/* <FaCircleArrowLeft className="size-6 cursor-pointer"/> */}
           <ProgramCard />
           <ProgramCard />
           <ProgramCard />
           <ProgramCard />
-          <FaCircleArrowRight className="size-6 cursor-pointer" />
+          <ProgramCard />
+          {/* <ProgramCard /> */}
+          {/* <FaCircleArrowRight className="size-6 cursor-pointer" /> */}
         </div>
-      </div>
-
-      <div>Collaboration Opportunities</div>
-      <div className="">
-        list {/* TODO: List component */}
-      </div>
-
-      <div>Programs in the Internet & Online Services industry</div>
-      <div>
-        list {/* TODO: List component */}
-      </div>
-
-      <div>Assets you might be interested in</div>
-      <div>
-        list {/* TODO: List component */} 
-      </div>
-
-      <div>Technologies you might be interested in</div>
-      <div>
-        list {/* TODO: List component */} 
       </div>
 
     </div>
