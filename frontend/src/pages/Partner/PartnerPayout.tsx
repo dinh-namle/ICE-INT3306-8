@@ -1,108 +1,76 @@
-import React, { useState, useEffect } from 'react';
-import PayoutSidebar from '../../components/PayoutSidebar';
+import React, { useState } from 'react';
+import PartnerPayoutSidebar from '../../components/PartnerPayoutSidebar';
 import SelectPayoutMethodPopup from '../../components/SelectPayoutMethodPopup';
 import ZaloPayFormPopup from '../../components/ZaloPayFormPopup';
 import MoMoFormPopup from '../../components/MoMoFormPopup';
-import { addPayoutMethod, removePayoutMethod } from '../../services/payoutService';
+import { addPayoutMethod, removePayoutMethod } from '../../services/payoutService'; // Import the service functions
 
-const Payout: React.FC = () => {
+const PartnerPayout: React.FC = () => {
   const [showSelectPopup, setShowSelectPopup] = useState(false);
   const [showZaloPayForm, setShowZaloPayForm] = useState(false);
   const [showMoMoForm, setShowMoMoForm] = useState(false);
-  const [payoutMethods, setPayoutMethods] = useState<{ id: number, type: string, details: string }[]>([]);
 
-  useEffect(() => {
-    // Load initial payout methods if necessary
-  }, []);
-
-  const openSelectPopup = () => {
-    setShowSelectPopup(true);
-    setShowZaloPayForm(false);
-    setShowMoMoForm(false);
-  };
-
-  const closeSelectPopup = () => {
-    setShowSelectPopup(false);
-  };
+  const openSelectPopup = () => setShowSelectPopup(true);
+  const closeSelectPopup = () => setShowSelectPopup(false);
 
   const openZaloPayForm = () => {
     setShowZaloPayForm(true);
-    setShowSelectPopup(false);
+    closeSelectPopup();
   };
-
-  const closeZaloPayForm = () => {
-    setShowZaloPayForm(false);
-  };
+  const closeZaloPayForm = () => setShowZaloPayForm(false);
 
   const openMoMoForm = () => {
     setShowMoMoForm(true);
-    setShowSelectPopup(false);
+    closeSelectPopup();
   };
+  const closeMoMoForm = () => setShowMoMoForm(false);
 
-  const closeMoMoForm = () => {
+  const handleBack = () => {
     setShowMoMoForm(false);
+    setShowZaloPayForm(false);
+    setShowSelectPopup(true);
   };
 
-  const handleAddZaloPay = async () => {
+  const handleNext = () => {
+    alert('Proceed to the next step');
+  };
+
+  const handleAddZaloPay = async (phoneNumber: string) => {
     try {
-      console.log("Adding ZaloPay method..."); // Logging start
-      const response = await addPayoutMethod('ZaloPay', '0375753997');
-      console.log("ZaloPay method added: ", response.data); // Logging response
-      setPayoutMethods(response.data.payoutMethods);
+      await addPayoutMethod('ZaloPay', phoneNumber);
       alert('ZaloPay added successfully');
       closeZaloPayForm();
     } catch (error) {
-      console.log("Error adding ZaloPay method: ", error); // Logging error
-      if (error instanceof Error) {
-        alert('Error adding ZaloPay: ' + error.message);
-      } else {
-        alert('An unknown error occurred while adding ZaloPay.');
-      }
+      alert('Error adding ZaloPay');
     }
   };
 
-  const handleAddMoMo = async () => {
+  const handleAddMoMo = async (phoneNumber: string) => {
     try {
-      console.log("Adding MoMo method..."); // Logging start
-      const response = await addPayoutMethod('MoMo', '0375753997');
-      console.log("MoMo method added: ", response.data); // Logging response
-      setPayoutMethods(response.data.payoutMethods);
+      await addPayoutMethod('MoMo', phoneNumber);
       alert('MoMo added successfully');
       closeMoMoForm();
     } catch (error) {
-      console.log("Error adding MoMo method: ", error); // Logging error
-      if (error instanceof Error) {
-        alert('Error adding MoMo: ' + error.message);
-      } else {
-        alert('An unknown error occurred while adding MoMo.');
-      }
+      alert('Error adding MoMo');
     }
   };
 
   const handleRemovePayoutMethod = async (id: number) => {
     try {
-      console.log("Removing payout method..."); // Logging start
-      const response = await removePayoutMethod(id);
-      console.log("Payout method removed: ", response.data); // Logging response
-      setPayoutMethods(response.data.payoutMethods);
+      await removePayoutMethod(id);
       alert('Payout method removed successfully');
     } catch (error) {
-      console.log("Error removing payout method: ", error); // Logging error
-      if (error instanceof Error) {
-        alert('Error removing payout method: ' + error.message);
-      } else {
-        alert('An unknown error occurred while removing payout method.');
-      }
+      alert('Error removing payout method');
     }
   };
 
   return (
     <div className="flex">
-      <PayoutSidebar />
+      <PartnerPayoutSidebar />
       <div className="flex-grow bg-main1-2 min-h-screen p-6">
         <div className="container mx-auto max-w-6xl">
           <div className="w-full h-[70px] bg-main1-1 flex items-center justify-center mb-6 rounded-lg">
-            <h1 className="text-main2-1 text-3xl font-bold">Payout</h1>
+            <h1 className="text-main2-1 text-3xl font-bold">Partner Payout</h1>
           </div>
 
           <div className="bg-main1-1 p-6 rounded-lg shadow-lg mb-6">
@@ -139,19 +107,12 @@ const Payout: React.FC = () => {
 
             <div className="bg-main1-1 p-6 rounded-lg shadow-lg">
               <h2 className="text-xl font-semibold mb-4 text-white">Payout Methods</h2>
-              {payoutMethods.map((method) => (
-                <div key={method.id} className="flex justify-between items-center mb-4">
-                  <span className="text-white">{method.type}: {method.details}</span>
-                  <button
-                    className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-700"
-                    onClick={() => handleRemovePayoutMethod(method.id)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
+              <div className="flex justify-between items-center mb-4">
+                <span className="text-white">Default Payout Method: ZaloPay (example@zalopay.vn)</span>
+                <button className="bg-sub-1 text-white py-2 px-4 rounded-lg hover:bg-red-700" onClick={() => handleRemovePayoutMethod(1)}>Remove</button>
+              </div>
               <button
-                className="bg-main2-1 text-main1-1 py-2 px-4 rounded-lg hover:bg-main2-2 mb-4"
+                className="bg-main2-1 text-main1-1 py-2 px-4 rounded-lg hover:bg-main2-2"
                 onClick={openSelectPopup}
               >
                 Add Payout Method
@@ -169,15 +130,15 @@ const Payout: React.FC = () => {
           {showZaloPayForm && (
             <ZaloPayFormPopup
               onClose={closeZaloPayForm}
-              onBack={openSelectPopup}
-              onAddZaloPay={handleAddZaloPay}
+              onBack={handleBack}
+              onAddZaloPay={handleAddZaloPay} // Pass the handler
             />
           )}
           {showMoMoForm && (
             <MoMoFormPopup
               onClose={closeMoMoForm}
-              onBack={openSelectPopup}
-              onAddMoMo={handleAddMoMo}
+              onBack={handleBack}
+              onAddMoMo={handleAddMoMo} // Pass the handler
             />
           )}
         </div>
@@ -186,4 +147,4 @@ const Payout: React.FC = () => {
   );
 };
 
-export default Payout;
+export default PartnerPayout;

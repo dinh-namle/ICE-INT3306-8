@@ -1,41 +1,41 @@
 import React, { useState } from 'react';
 import Modal from '../components/Modal';
 
-interface PayPalFormPopupProps {
+interface MoMoFormPopupProps {
   onClose: () => void;
   onBack: () => void;
-  onAddPayPal: (email: string) => void;
+  onAddMoMo: (phoneNumber: string) => void;
 }
 
-const PayPalFormPopup: React.FC<PayPalFormPopupProps> = ({ onClose, onBack, onAddPayPal }) => {
-  const [email, setEmail] = useState<string>('');
+const MoMoFormPopup: React.FC<MoMoFormPopupProps> = ({ onClose, onBack, onAddMoMo }) => {
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    onAddPayPal(email);
+    onAddMoMo(phoneNumber);
   };
 
   return (
     <Modal onClose={onClose}>
-      <h2 className="text-xl font-semibold mb-4">Add PayPal</h2>
+      <h2 className="text-xl font-semibold mb-4">Add MoMo</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-gray-700">PayPal Email:</label>
+          <label className="block text-gray-700">MoMo Phone Number:</label>
           <input
-            type="email"
+            type="text"
             className="w-full px-3 py-2 border border-gray-300 rounded mt-1"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
             required
           />
         </div>
         <div className="flex justify-between">
           <button type="button" onClick={onBack} className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700">Back</button>
-          <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">Add PayPal</button>
+          <button type="submit" className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700">Add MoMo</button>
         </div>
       </form>
     </Modal>
   );
 };
 
-export default PayPalFormPopup;
+export default MoMoFormPopup;
