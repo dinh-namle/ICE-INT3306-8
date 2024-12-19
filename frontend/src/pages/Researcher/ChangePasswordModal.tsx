@@ -18,7 +18,7 @@ const ChangePasswordModal: React.FC<ModalProps> = ({ onClose }) => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/user/change-password/:id", {
+      const response = await axios.post("http://localhost:3001/api/users/change-password/:id", {
         id: 1, // ID của người dùng (cần lấy từ thông tin user hiện tại)
         currentPassword,
         newPassword,

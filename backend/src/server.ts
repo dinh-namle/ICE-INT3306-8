@@ -6,6 +6,7 @@ import authRoutes from "./routes/loginRoutes"; // Routes đăng nhập và OAuth
 import registerRoutes from "./routes/registerRoutes"; // Routes đăng ký
 import partnerRoutes from "./routes/partnerRoutes"; // Routes dành cho Partner
 import researcherRoutes from "./routes/researcherRoutes"; // Routes dành cho Researcher
+import userRoutes from "./routes/userRoutes";
 
 const app = express();
 
@@ -21,6 +22,8 @@ app.use("/api/auth", registerRoutes); // Routes đăng ký
 app.use("/api/auth", authRoutes); // Routes đăng nhập và OAuth
 app.use("/api/partners", partnerRoutes); // Routes dành cho Partner
 app.use("/api/researchers", researcherRoutes); // Routes dành cho Researcher
+app.use("/api/users", userRoutes); // Routes dành cho user
+
 
 // Middleware xử lý lỗi
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
