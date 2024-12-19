@@ -62,7 +62,7 @@ const PaymentHistory: React.FC = () => {
             </div>
             <div className="bg-main1-1 text-white p-4 rounded w-1/2 ml-2">
               <h2 className="text-xl font-bold">Default Payment Method</h2>
-              <p className="text-3xl">PayPal</p>
+              <p className="text-3xl">ZaloPay</p>
             </div>
           </div>
           <div className="bg-main1-1 text-white p-4 rounded mt-4">
