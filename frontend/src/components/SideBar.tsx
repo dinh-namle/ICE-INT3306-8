@@ -32,7 +32,7 @@ const SideBar: React.FC = () => {
       <Link className={`py-4 ${location.pathname === "/inbox" ? "bg-main2-1" : "bg-main1-1"} w-full flex flex-col items-center`} to={"#"}>
         <IoMail className="fill-white size-6" />
       </Link>
-      <Link className={`py-4 ${location.pathname === "/profile" ? "bg-main2-1" : "bg-main1-1"} w-full flex flex-col items-center`} to={"/profile/1"}>
+      <Link className={`py-4 ${location.pathname.startsWith("/profile") ? "bg-main2-1" : "bg-main1-1"} w-full flex flex-col items-center`} to={"/profile/1"}>
         <FaUserCircle className="fill-white size-6" />
       </Link>
       <Link className={`py-4 ${location.pathname === "/payment" ? "bg-main2-1" : "bg-main1-1"} w-full flex flex-col items-center`} to={"/payout"}>
