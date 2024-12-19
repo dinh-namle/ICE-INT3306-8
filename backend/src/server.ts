@@ -1,8 +1,32 @@
 import "reflect-metadata"; // Import bắt buộc cho TypeORM
 import { AppDataSource } from "./data-source"; // Kết nối TypeORM
-import app from "./app";
+import express from "express";
+import cors from "cors";
+import authRoutes from "./routes/loginRoutes"; // Routes đăng nhập và OAuth
+import registerRoutes from "./routes/registerRoutes"; // Routes đăng ký
+import partnerRoutes from "./routes/partnerRoutes"; // Routes dành cho Partner
+import researcherRoutes from "./routes/researcherRoutes"; // Routes dành cho Researcher
 
-const PORT = process.env.PORT || 3000; // Port của server
+const app = express();
+
+// Khai báo PORT một lần duy nhất
+const PORT = process.env.PORT || 3001;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Routes
+app.use("/api/auth", registerRoutes); // Routes đăng ký
+app.use("/api/auth", authRoutes); // Routes đăng nhập và OAuth
+app.use("/api/partners", partnerRoutes); // Routes dành cho Partner
+app.use("/api/researchers", researcherRoutes); // Routes dành cho Researcher
+
+// Middleware xử lý lỗi
+app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  console.error("Error:", err.stack);
+  res.status(500).json({ message: "Internal Server Error" });
+});
 
 // Khởi động server
 const startServer = async () => {

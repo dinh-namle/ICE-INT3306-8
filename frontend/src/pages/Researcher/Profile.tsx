@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import HacktivityItem from '../../components/HacktivityItem';
 import { Modal } from '../../components';
 import ChangePasswordModal from './ChangePasswordModal';
+import axios from 'axios';
 
 const overviewData = [
     {
@@ -31,11 +32,26 @@ const overviewData = [
     },
 ];
 
+interface User {
+    username: string;
+    email: string;
+    phoneNumber: string;
+    webSite: string;
+    biography: string;
+}
+
+interface StatsProps {
+    label1: string;
+    value1: string | number;
+    label2: string;
+    value2: string | number;
+}
+
 const Profile = () => {
-    const navigate = useNavigate();
-    const handleNavigate = (path: string) => {
-        navigate(path);
-    };
+    // const navigate = useNavigate();
+    // const handleNavigate = (path: string) => {
+    //     navigate(path);
+    // };
 
     const [openModal, setOpenModal] = useState(false)
     const handleOpenModal = () => { setOpenModal(!openModal) }  
@@ -48,17 +64,31 @@ const Profile = () => {
     );
 
     const [isEditing, setIsEditing] = useState(false);
-    const [userName, setUserName] = useState('CaoLePhungCP');
-    const [email, setEmail] = useState('caolephungcp@gmail.com');
-    const [phoneNumber, setPhoneNumber] = useState('0123 456 789');
-    const [webSite, setWebSite] = useState('abcdd');
-    const [about, setAbout] = useState(`Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel reprehenderit nihil quis ullam quam, voluptatum ea cum nemo dolore qui esse ex ut non, odit soluta rem tenetur repudiandae nesciunt.`);
+
+    const { id } = useParams(); 
+    const [user, setUser] = useState<User>();
+
     const [lastUpdated, setLastUpdated] = useState(new Date().toLocaleString());
 
-    const handleEditToggle = () => {
+    const handleEditToggle = async () => {
         if (isEditing) {
-            setLastUpdated(new Date().toLocaleString());
+            const updatedUser = {
+                username: user?.username,
+                email: user?.email,
+                phoneNumber: user?.phoneNumber,
+                webSite: user?.webSite,
+                biography: user?.biography, 
+            };
+    
+            try {
+                const response = await axios.put(`http://localhost:3001/api/users/update/${id}`, updatedUser);
+                setUser(response.data.data);
+                setLastUpdated(new Date().toLocaleString());
+            } catch (error) {
+                const errorMessage = (error as any)?.response?.data?.message || "An error occurred";
+            }
         }
+    
         setIsEditing(!isEditing);
     };
 
@@ -84,12 +114,29 @@ const Profile = () => {
         </div>
     );
 
-    interface StatsProps {
-        label1: string;
-        value1: string | number;
-        label2: string;
-        value2: string | number;
-    }
+    useEffect(() => {
+        console.log('Current :', id);
+
+        const fetchUserInfo = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3001/api/users/get-info/${id}`);
+                console.log('API Response:', response);
+
+                if (response.data && response.data.data) {
+                    console.log('Fetched User Data:', response.data.data); 
+                    setUser(response.data.data);
+                } else {
+                    console.error("No user data found in response");
+                }
+            } catch (err) {
+                const errorMessage = (err as any)?.response?.data?.message || "An error occurred";
+                console.log(errorMessage);
+            }
+        };
+
+        fetchUserInfo();
+    }, [id]);
+
     
     const Stats: React.FC<StatsProps> = ({ label1, value1, label2, value2 }) => {
         return (
@@ -110,25 +157,26 @@ const Profile = () => {
                 <div className="h-[650px] w-[370px] mr-[30px] ml-[20px] flex flex-col items-center basis-1/3">
                     <div className="bg-main1-1 w-full flex flex-col items-center p-[1px] pb-[30px] mb-[30px]">
                         <div className="pb-[10px] pt-[30px]">
-                            <img src="public/Logo_UET.png" alt="Logo" className="w-[180px]" />
+                            <img src="/Logo_UET.png" alt="Logo" className="w-[180px]" />
                         </div>
                         <div className="flex flex-col w-full items-center pt-[10px] pb-[10px] border-b-[0.25px] border-main1-3">
                             {isEditing ? (
                                 <>
-                                    {renderInput("userName", userName, (e) => setUserName(e.target.value), "Enter your username")}
-                                    {renderInput("email", email, (e) => setEmail(e.target.value), "Enter your email", "email")}
-                                    {renderInput("phoneNumber", phoneNumber, (e) => setPhoneNumber(e.target.value), "Enter your phone number")}
-                                    {renderInput("webSite", webSite, (e) => setWebSite(e.target.value), "Enter your website")}
+                                    {renderInput("username", user?.username || "", (e) => setUser({ ...user, username: e.target.value } as User), "Enter your username")}
+                                    {renderInput("email", user?.email || "", (e) => setUser({ ...user, email: e.target.value } as User), "Enter your email", "email")}
+                                    {renderInput("phoneNumber", user?.phoneNumber || "", (e) => setUser({ ...user, phoneNumber: e.target.value } as User), "Enter your phone number")}
+                                    {renderInput("webSite", user?.webSite || "", (e) => setUser({ ...user, webSite: e.target.value } as User), "Enter your website")}
                                 </>
                             ) : (
                                 <div className="flex flex-col w-full items-center">
-                                    <span className="text-main1-3">{userName}</span>
-                                    <span className="text-main1-3">{email}</span>
-                                    <span className="text-main1-3">{phoneNumber}</span>
-                                    <span className="text-main1-3">{webSite}</span>
+                                    <span className="text-main1-3">{user?.username}</span>
+                                    <span className="text-main1-3">{user?.email}</span>
+                                    <span className="text-main1-3">{user?.phoneNumber}</span>
+                                    <span className="text-main1-3">{user?.webSite}</span>
                                 </div>
                             )}
                         </div>
+
 
                         <div className="p-[10px] w-full flex justify-center">
                             <span className="text-main1-3">{lastUpdated}</span>
@@ -165,21 +213,21 @@ const Profile = () => {
                 <div className="flex flex-col items-center basis-2/3 mr-[20px]">
                     <div className="bg-main1-1 flex flex-col w-full mb-[30px]">
                         <div className="w-full bg-slate-900 h-[50px] flex items-center pl-[20px]">
-                            <span className="text-main1-3">About {userName}</span>
+                            <span className="text-main1-3">About {user?.username}</span>
                         </div>
                         <div className="w-full p-[20px] flex justify-center">
                             <label htmlFor="about" className="text-main1-3"></label>
                             {isEditing ? (
                                 <textarea
                                     id="about"
-                                    value={about}
-                                    onChange={(e) => setAbout(e.target.value)}
+                                    value={user?.biography}
+                                    onChange={(e) => setUser({ ...user, biography: e.target.value } as User)}
                                     placeholder="Tell us about yourself..."
                                     className={`w-full p-2 mt-1 rounded border border-gray-400 text-main1-3`}
                                     style={{ backgroundColor: 'var(--main1-3)' }}
                                 />
                             ) : (
-                                <p className="text-main1-3">{about}</p>
+                                <p className="text-main1-3">{user?.biography}</p>
                             )}
                         </div>
                     </div>
