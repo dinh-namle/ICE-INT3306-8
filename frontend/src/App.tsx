@@ -20,13 +20,13 @@ export default function App() {
 
         <Route element={<AuthLayout />}>
           <Route path='/login' element={<Login />} />
-          <Route path='/Register' element={<AccountRegister />} />
-          <Route path='/Register/Researcher' element={<ResearcherRegister />} />
-          <Route path='/Register/Partner' element={<PartnerRegister />} />
+          <Route path='/register' element={<AccountRegister />} />
+          <Route path='/register/researcher' element={<ResearcherRegister />} />
+          <Route path='/register/partner' element={<PartnerRegister />} />
         </Route>
 
         <Route element={<AdminLayout />}>
-          {/* <Route path='/admin' element={<Notification />} /> */}
+          <Route path='/admin' element={<AdminNotification />} />
           <Route path='/admin/notification' element={<AdminNotification />} />
           <Route path='/admin/accounts' element={<AdminAccounts />} />
           <Route path='/admin/programs' element={<AdminPrograms />} />
@@ -38,16 +38,17 @@ export default function App() {
           < Route path='/programs' element={<Programs />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/leaderboard' element={<LeaderBoard />} />
-          <Route path='/SubmitReport' element={<SubmitReport />} />
-          <Route path='/Reward' element={<Reward />} />
-          <Route path='/Hacktivity' element={<Hacktivity />} />
-          <Route path='/PaymentAdd' element={<PaymentAdd />} />
+          <Route path='/submit-report' element={<SubmitReport />} />
+          <Route path='/reward' element={<Reward />} />
+          <Route path='/hacktivity' element={<Hacktivity />} />
+          <Route path='/payment-add' element={<PaymentAdd />} />
         </Route>
 
         <Route element={<PartnerLayout />}>
+          <Route path='/partner' element={<PartnerOverview />}/>
           <Route path='/partner/inbox' element={<PartnerInbox />}/>
           <Route path='/partner/overview' element={<PartnerOverview />}/>
-          <Route path='/partner/paymenthistory' element={<PaymentHistory />}/>
+          <Route path='/partner/payment-history' element={<PaymentHistory />}/>
           <Route path='/partner/programs' element={<PartnerPrograms />}/>
           <Route path='/partner/account' element={<PartnerAccount />}/>
         </Route>

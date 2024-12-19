@@ -1,4 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { OneToMany } from "typeorm";
+import { Report } from "./Report";
+import { ManyToOne } from "typeorm";
+import { User } from "./User";
 
 @Entity()
 export class Program {
@@ -8,12 +12,27 @@ export class Program {
   @Column()
   name!: string;
 
-  @Column({ nullable: true }) // Cho phép description rỗng
+  @Column({type: "mediumtext"})
   description?: string; 
+
+  @Column()
+  status!: string;
+
+  @Column()
+  reward!: number;
+
+  @Column()
+  scope!: string;
 
   @Column()
   startDate!: Date;
 
   @Column()
   endDate!: Date;
+  
+  @ManyToOne(() => User, user => user.programs)
+  user!: User;
+
+  @OneToMany(() => Report, report => report.program)
+  reports!: Report[];
 }
