@@ -10,7 +10,7 @@ const LogoSection: React.FC = () => {
       <div className="w-48 h-48 bg-main1-2 rounded-full flex items-center justify-center">
         <span className="text-white font-extrabold text-7xl">
           <span className="text-main2-1">I</span>CE
-        </span>
+        </span>z
       </div>
       <div>
         <p className="text-white text-4xl font-sans font-extrabold flex flex-col my-4 space-y-4">
