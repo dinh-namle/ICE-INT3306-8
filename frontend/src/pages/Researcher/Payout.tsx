@@ -1,33 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PayoutSidebar from '../../components/PayoutSidebar';
-import SelectPayoutMethodPopup from '../../components/SelectPayoutMethodPopup';
 import ZaloPayFormPopup from '../../components/ZaloPayFormPopup';
 import MoMoFormPopup from '../../components/MoMoFormPopup';
-import { addPayoutMethod, removePayoutMethod } from '../../services/payoutService';
 
 const Payout: React.FC = () => {
-  const [showSelectPopup, setShowSelectPopup] = useState(false);
+  const [payoutMethods, setPayoutMethods] = useState<{ id: number, type: string, details: string }[]>([]);
   const [showZaloPayForm, setShowZaloPayForm] = useState(false);
   const [showMoMoForm, setShowMoMoForm] = useState(false);
-  const [payoutMethods, setPayoutMethods] = useState<{ id: number, type: string, details: string }[]>([]);
-
-  useEffect(() => {
-    // Load initial payout methods if necessary
-  }, []);
-
-  const openSelectPopup = () => {
-    setShowSelectPopup(true);
-    setShowZaloPayForm(false);
-    setShowMoMoForm(false);
-  };
-
-  const closeSelectPopup = () => {
-    setShowSelectPopup(false);
-  };
 
   const openZaloPayForm = () => {
     setShowZaloPayForm(true);
-    setShowSelectPopup(false);
+    setShowMoMoForm(false);
   };
 
   const closeZaloPayForm = () => {
@@ -36,64 +19,27 @@ const Payout: React.FC = () => {
 
   const openMoMoForm = () => {
     setShowMoMoForm(true);
-    setShowSelectPopup(false);
+    setShowZaloPayForm(false);
   };
 
   const closeMoMoForm = () => {
     setShowMoMoForm(false);
   };
 
-  const handleAddZaloPay = async () => {
-    try {
-      console.log("Adding ZaloPay method..."); // Logging start
-      const response = await addPayoutMethod('ZaloPay', '0375753997');
-      console.log("ZaloPay method added: ", response.data); // Logging response
-      setPayoutMethods(response.data.payoutMethods);
-      alert('ZaloPay added successfully');
-      closeZaloPayForm();
-    } catch (error) {
-      console.log("Error adding ZaloPay method: ", error); // Logging error
-      if (error instanceof Error) {
-        alert('Error adding ZaloPay: ' + error.message);
-      } else {
-        alert('An unknown error occurred while adding ZaloPay.');
-      }
-    }
+  const handleAddZaloPay = (phoneNumber: string) => {
+    const newMethod = { id: Date.now(), type: 'ZaloPay', details: phoneNumber };
+    setPayoutMethods([...payoutMethods, newMethod]);
+    closeZaloPayForm();
   };
 
-  const handleAddMoMo = async () => {
-    try {
-      console.log("Adding MoMo method..."); // Logging start
-      const response = await addPayoutMethod('MoMo', '0375753997');
-      console.log("MoMo method added: ", response.data); // Logging response
-      setPayoutMethods(response.data.payoutMethods);
-      alert('MoMo added successfully');
-      closeMoMoForm();
-    } catch (error) {
-      console.log("Error adding MoMo method: ", error); // Logging error
-      if (error instanceof Error) {
-        alert('Error adding MoMo: ' + error.message);
-      } else {
-        alert('An unknown error occurred while adding MoMo.');
-      }
-    }
+  const handleAddMoMo = (phoneNumber: string) => {
+    const newMethod = { id: Date.now(), type: 'MoMo', details: phoneNumber };
+    setPayoutMethods([...payoutMethods, newMethod]);
+    closeMoMoForm();
   };
 
-  const handleRemovePayoutMethod = async (id: number) => {
-    try {
-      console.log("Removing payout method..."); // Logging start
-      const response = await removePayoutMethod(id);
-      console.log("Payout method removed: ", response.data); // Logging response
-      setPayoutMethods(response.data.payoutMethods);
-      alert('Payout method removed successfully');
-    } catch (error) {
-      console.log("Error removing payout method: ", error); // Logging error
-      if (error instanceof Error) {
-        alert('Error removing payout method: ' + error.message);
-      } else {
-        alert('An unknown error occurred while removing payout method.');
-      }
-    }
+  const handleRemovePayoutMethod = (id: number) => {
+    setPayoutMethods(payoutMethods.filter(method => method.id !== id));
   };
 
   return (
@@ -137,7 +83,7 @@ const Payout: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-main1-1 p-6 rounded-lg shadow-lg">
+            <div className="bg-main1-1 p-6 rounded-lg shadow-lg mb-6">
               <h2 className="text-xl font-semibold mb-4 text-white">Payout Methods</h2>
               {payoutMethods.map((method) => (
                 <div key={method.id} className="flex justify-between items-center mb-4">
@@ -150,38 +96,36 @@ const Payout: React.FC = () => {
                   </button>
                 </div>
               ))}
-              <button
-                className="bg-main2-1 text-main1-1 py-2 px-4 rounded-lg hover:bg-main2-2 mb-4"
-                onClick={openSelectPopup}
-              >
-                Add Payout Method
-              </button>
+              <div className="flex">
+                <button
+                  className="bg-main2-1 text-main1-1 py-2 px-4 rounded-lg hover:bg-main2-2 mr-2"
+                  onClick={openZaloPayForm}
+                >
+                  Add ZaloPay
+                </button>
+                <button
+                  className="bg-main2-1 text-main1-1 py-2 px-4 rounded-lg hover:bg-main2-2"
+                  onClick={openMoMoForm}
+                >
+                  Add MoMo
+                </button>
+              </div>
             </div>
           </div>
-
-          {showSelectPopup && (
-            <SelectPayoutMethodPopup
-              onClose={closeSelectPopup}
-              onZaloPay={openZaloPayForm}
-              onMoMo={openMoMoForm}
-            />
-          )}
-          {showZaloPayForm && (
-            <ZaloPayFormPopup
-              onClose={closeZaloPayForm}
-              onBack={openSelectPopup}
-              onAddZaloPay={handleAddZaloPay}
-            />
-          )}
-          {showMoMoForm && (
-            <MoMoFormPopup
-              onClose={closeMoMoForm}
-              onBack={openSelectPopup}
-              onAddMoMo={handleAddMoMo}
-            />
-          )}
         </div>
       </div>
+      {showZaloPayForm && (
+        <ZaloPayFormPopup
+          onClose={closeZaloPayForm}
+          onAddZaloPay={handleAddZaloPay}
+        />
+      )}
+      {showMoMoForm && (
+        <MoMoFormPopup
+          onClose={closeMoMoForm}
+          onAddMoMo={handleAddMoMo}
+        />
+      )}
     </div>
   );
 };

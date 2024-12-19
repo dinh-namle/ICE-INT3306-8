@@ -19,6 +19,16 @@ const AddPaymentModal: React.FC<AddPaymentModalProps> = ({ onClose, onAdd }) => 
     }
   };
 
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const date = new Date(e.target.value);
+    const formattedDate = date.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }).replace(/ /g, ' ');
+    setPayday(formattedDate);
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-main1-1 p-6 rounded-lg shadow-lg w-96">
@@ -35,11 +45,11 @@ const AddPaymentModal: React.FC<AddPaymentModalProps> = ({ onClose, onAdd }) => 
         <div className="mb-4">
           <label className="block text-white mb-1">Payday</label>
           <input
-            type="text"
-            value={payday}
-            onChange={(e) => setPayday(e.target.value)}
+            type="date"
+            onChange={handleDateChange}
             className="w-full p-2 border border-gray-300 rounded"
           />
+          {payday && <p className="text-white mt-2">Selected Date: {payday}</p>}
         </div>
         <div className="mb-4">
           <label className="block text-white mb-1">Report ID</label>
