@@ -1,12 +1,9 @@
 import { Router } from "express";
-import { addPayoutMethod, getPaymentHistory } from "../controllers/paymentController";
+import { addPayoutMethod, removePayoutMethod } from "../controllers/paymentController";
 
 const router = Router();
 
-// Add a payout method
 router.post("/add", addPayoutMethod);
-
-// Get payment history
-router.get("/history/:userId", getPaymentHistory);
+router.delete("/remove/:id", removePayoutMethod);
 
 export default router;

@@ -1,8 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+<<<<<<< HEAD
+=======
 import { PayoutMethod } from "./PayoutMethod"; 
 import { PaymentHistory } from "./PaymentHistory"
 import { Report } from "./Report"
 import { Program } from "./Program"
+>>>>>>> eba348a7e20851deeab247b5c40f6447c76be586
 @Entity() // Decorator to mark the class as an entity
 export class User {
     @PrimaryGeneratedColumn() // Primary key column with auto-increment
@@ -26,6 +29,10 @@ export class User {
     @Column({ nullable: true }) 
     biography!: string;
 
+<<<<<<< HEAD
+    @Column({ default: "active" }) // Giá trị mặc định
+    status!: string;
+=======
     @Column({ nullable: true })
     role!: string;
 
@@ -52,4 +59,5 @@ export class User {
 
     @OneToMany(() => Program, program => program.user)
     programs!: Program[];
+>>>>>>> eba348a7e20851deeab247b5c40f6447c76be586
 }
