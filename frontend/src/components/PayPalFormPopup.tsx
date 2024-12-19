@@ -4,16 +4,15 @@ import Modal from '../components/Modal';
 interface PayPalFormPopupProps {
   onClose: () => void;
   onBack: () => void;
-  onAddPayPal: (userId: number, email: string) => void;
+  onAddPayPal: (email: string) => void;
 }
 
 const PayPalFormPopup: React.FC<PayPalFormPopupProps> = ({ onClose, onBack, onAddPayPal }) => {
   const [email, setEmail] = useState<string>('');
-  const userId = 1; // Replace with the actual user ID
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    onAddPayPal(userId, email);
+    onAddPayPal(email);
   };
 
   return (

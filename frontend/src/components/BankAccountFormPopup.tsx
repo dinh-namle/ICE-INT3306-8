@@ -4,19 +4,18 @@ import Modal from '../components/Modal';
 interface BankAccountFormPopupProps {
   onClose: () => void;
   onBack: () => void;
-  onNext: (userId: number, bankDetails: string) => void;
+  onAddBankAccount: (bankDetails: string) => void;
 }
 
-const BankAccountFormPopup: React.FC<BankAccountFormPopupProps> = ({ onClose, onBack, onNext }) => {
+const BankAccountFormPopup: React.FC<BankAccountFormPopupProps> = ({ onClose, onBack, onAddBankAccount }) => {
   const [accountHolderName, setAccountHolderName] = useState<string>('');
   const [accountNumber, setAccountNumber] = useState<string>('');
   const [bankName, setBankName] = useState<string>('');
-  const userId = 1; // Replace with the actual user ID
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const bankDetails = JSON.stringify({ accountHolderName, accountNumber, bankName });
-    onNext(userId, bankDetails);
+    onAddBankAccount(bankDetails);
   };
 
   return (

@@ -3,6 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { MdLeaderboard } from "react-icons/md";
 import { IoIosPaper } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
+import { MdPayment } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 
 const SideBar: React.FC = () => {
@@ -25,7 +26,7 @@ const SideBar: React.FC = () => {
       <Link className={`py-4 ${location.pathname === "/leaderboard" ? "bg-main2-1" : "bg-main1-1"} w-full flex flex-col items-center`} to={"/leaderboard"}>
         <MdLeaderboard className="fill-white size-6" />
       </Link>
-      <Link className={`py-4 ${location.pathname === "/hacktivity" ? "bg-main2-1" : "bg-main1-1"} w-full flex flex-col items-center`} to={"#"}>
+      <Link className={`py-4 ${location.pathname === "/hacktivity" ? "bg-main2-1" : "bg-main1-1"} w-full flex flex-col items-center`} to={"/hacktivity"}>
         <IoIosPaper className="fill-white size-6" />
       </Link>
       <Link className={`py-4 ${location.pathname === "/inbox" ? "bg-main2-1" : "bg-main1-1"} w-full flex flex-col items-center`} to={"#"}>
@@ -33,6 +34,9 @@ const SideBar: React.FC = () => {
       </Link>
       <Link className={`py-4 ${location.pathname === "/profile" ? "bg-main2-1" : "bg-main1-1"} w-full flex flex-col items-center`} to={"/profile"}>
         <FaUserCircle className="fill-white size-6" />
+      </Link>
+      <Link className={`py-4 ${location.pathname === "/payment" ? "bg-main2-1" : "bg-main1-1"} w-full flex flex-col items-center`} to={"/payout"}>
+        <MdPayment className="fill-white size-6" />
       </Link>
     </div>
   );
