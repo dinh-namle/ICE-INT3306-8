@@ -2,14 +2,14 @@ import React from 'react';
 
 export const Part1: React.FC<{ asset: string; onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void; }> = ({ asset, onChange }) => (
     <div className="flex items-start">
-        <div className="step-number" style={{ borderRadius: '50%', backgroundColor: '#2d3748', fontSize: '2rem', width: '3rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>1</div>
-        <div className="step-container p-2 rounded bg-main1-2 text-white border bg-main1-1 flex-1">
+        <div className="step-number bg-main1-1" style={{ borderRadius: '50%', color: 'white', fontSize: '2rem', width: '3rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>1</div>
+        <div className="step-container p-2 rounded bg-main1-1 text-white border flex-1">
             <h2 className="text-xl font-semibold mb-2">Asset</h2>
             <p className="font-light">Select the attack surface of this issue.</p>
             <select 
                 id="asset" 
                 name="asset" 
-                className="w-full p-2 rounded bg-main1-2 text-white border bg-main1-1"
+                className="w-full p-2 rounded bg-main1-1 text-white border"
                 required 
                 value={asset} 
                 onChange={onChange}
@@ -25,14 +25,14 @@ export const Part1: React.FC<{ asset: string; onChange: (e: React.ChangeEvent<HT
 
 export const Part2: React.FC<{ weakness: string; onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void; }> = ({ weakness, onChange }) => (
     <div className="flex items-start">
-        <div className="step-number" style={{ borderRadius: '50%', backgroundColor: '#2d3748', fontSize: '2rem', width: '3rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>2</div>
-        <div className="step-container p-2 rounded bg-main1-2 text-white border bg-main1-1 flex-1">
+        <div className="step-number bg-main1-1" style={{ borderRadius: '50%', color: 'white', fontSize: '2rem', width: '3rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>2</div>
+        <div className="step-container p-2 rounded bg-main1-1 text-white border flex-1">
             <h2 className="text-xl font-semibold mb-2">Weakness</h2>
             <p className="font-light">Select the type of the potential issue you have discovered.</p>
             <select 
                 id="weakness" 
                 name="weakness" 
-                className="w-full p-2 rounded bg-main1-2 text-white border bg-main1-1"
+                className="w-full p-2 rounded bg-main1-1 text-white border"
                 required 
                 value={weakness} 
                 onChange={onChange}
@@ -49,8 +49,8 @@ export const Part2: React.FC<{ weakness: string; onChange: (e: React.ChangeEvent
 
 export const Part3: React.FC<{ formData: any; onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void; }> = ({ formData, onChange }) => (
     <div className="flex items-start">
-        <div className="step-number" style={{ borderRadius: '50%', backgroundColor: '#2d3748', fontSize: '2rem', width: '3rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>3</div>
-        <div className="step-container p-2 rounded bg-main1-2 text-white border bg-main1-1 flex-1">
+        <div className="step-number bg-main1-1" style={{ borderRadius: '50%', color: 'white', fontSize: '2rem', width: '3rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>3</div>
+        <div className="step-container p-2 rounded bg-main1-1 text-white border flex-1">
             <h2 className="text-xl font-semibold mb-2">Severity (Optional)</h2>
             <p className="font-light">Estimate the severity of this issue.</p>
             <div className="grid grid-cols-1 gap-4">
@@ -60,7 +60,7 @@ export const Part3: React.FC<{ formData: any; onChange: (e: React.ChangeEvent<HT
                         <select 
                             id={field} 
                             name={field} 
-                            className="w-full p-2 rounded bg-main1-2 text-white border bg-main1-1"
+                            className="w-full p-2 rounded bg-main1-1 text-white border"
                             value={formData[field]} 
                             onChange={onChange}
                         >
@@ -78,8 +78,8 @@ export const Part3: React.FC<{ formData: any; onChange: (e: React.ChangeEvent<HT
 
 export const Part4: React.FC<{ title: string; description: string; impact: string; files: File[]; onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void; onFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void; }> = ({ title, description, impact, files, onChange, onFileChange }) => (
     <div className="flex items-start">
-        <div className="step-number" style={{ borderRadius: '50%', backgroundColor: '#2d3748', fontSize: '2rem', width: '3rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>4</div>
-        <div className="step-container p-2 rounded bg-main1-2 text-white border bg-main1-1 flex-1">
+        <div className="step-number bg-main1-1" style={{ borderRadius: '50%', color: 'white', fontSize: '2rem', width: '3rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>4</div>
+        <div className="step-container p-2 rounded bg-main1-1 text-white border flex-1">
             <h2 className="text-xl font-semibold mb-2">Proof of Concept</h2>
             <p className="font-light">Provide a clear proof of concept or additional documentation.</p>
             <input 
@@ -89,7 +89,7 @@ export const Part4: React.FC<{ title: string; description: string; impact: strin
                 placeholder="Title" 
                 value={title} 
                 onChange={onChange} 
-                className="w-full p-2 rounded mb-4 bg-main1-2 text-white border bg-main1-1" 
+                className="w-full p-2 rounded mb-4 bg-main1-1 text-white border" 
                 required 
             />
             <textarea 
@@ -98,7 +98,7 @@ export const Part4: React.FC<{ title: string; description: string; impact: strin
                 placeholder="Description" 
                 value={description} 
                 onChange={onChange} 
-                className="w-full p-2 rounded mb-4 bg-main1-2 text-white border bg-main1-1" 
+                className="w-full p-2 rounded mb-4 bg-main1-1 text-white border" 
                 required 
             />
             <input 
@@ -108,14 +108,14 @@ export const Part4: React.FC<{ title: string; description: string; impact: strin
                 placeholder="Impact" 
                 value={impact} 
                 onChange={onChange} 
-                className="w-full p-2 rounded mb-4 bg-main1-2 text-white border bg-main1-1" 
+                className="w-full p-2 rounded mb-4 bg-main1-1 text-white border" 
                 required 
             />
             <input 
                 type="file" 
                 onChange={onFileChange} 
                 multiple 
-                className="mb-4 bg-main1-2 text-white"
+                className="mb-4 bg-main1-1 text-white"
             />
             <p>Selected Files: {files.map(file => file.name).join(', ')}</p>
         </div>

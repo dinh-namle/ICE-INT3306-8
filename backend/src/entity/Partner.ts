@@ -1,10 +1,8 @@
 import { Entity, Column, ManyToMany, JoinTable, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
-import { User } from './User';
 import { Program } from './Program';
 
 @Entity()
-export class Partner extends User {
-
+export class Partner {
     @PrimaryGeneratedColumn()
     id!: number; // Non-null assertion
 
@@ -32,11 +30,20 @@ export class Partner extends User {
     @Column()
     country!: string;
 
+    @Column()
+    password!: string; 
+
     @CreateDateColumn()
     createdAt!: Date;
 
+    @Column({ nullable: true }) // Đánh dấu `address` là tùy chọn
+    address?: string;
+
     @Column()
     businessName!: string;
+
+    @Column({ nullable: true })
+    website?: string; // Nullable nếu không phải đối tác nào cũng có website
 
     @ManyToMany(() => Program)
     @JoinTable()
