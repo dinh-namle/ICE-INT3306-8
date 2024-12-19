@@ -58,7 +58,7 @@ const SubmitReport: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        navigate('/thank-you');
+        navigate('/Programs');
     };
 
     const handleDraftSave = () => {
@@ -68,7 +68,7 @@ const SubmitReport: React.FC = () => {
     return (
         <div className="bg-main1-2 min-h-screen w-full">
             <div className="w-full h-[70px] bg-main1-1 flex items-center justify-start mx-auto border-l-[0.1px] border-main1-3">
-                <h1 className="text-main2-1 pl-[50px] text-3xl font-bold">Submit a Vulnerability Report</h1>
+                <h1 className="text-main2-1 pl-[50px] text-3xl font-bold">Report Submission</h1>
             </div>
 
             <div className="container mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
